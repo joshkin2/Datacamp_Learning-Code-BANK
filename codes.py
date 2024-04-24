@@ -15,3 +15,6 @@ plt.show()
 # add data to graph source
 year = [1800 ,1850 ,1900] + year
 pop = [1.0, 1.262, 1.650] + pop
+# import decision trees scikit-learn libraries
+from sklearn import tree
+from sklearn.metrics import accuracy_score, confusion matrix
