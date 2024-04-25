@@ -34,5 +34,10 @@ world["albania"]
 # get the index of albania in list
 ind_albania = countries.index("albania"
 # to print out keys
-print(europe.keys())									
-                              
+print(europe.keys())		
+# add more data to dict
+world["sealand"] = 0.23                              
+# check if a value is in a dict
+"sealand" in world
+# delete value from dict
+del(world["sealand"])
