@@ -18,3 +18,21 @@ pop = [1.0, 1.262, 1.650] + pop
 # import decision trees scikit-learn libraries
 from sklearn import tree
 from sklearn.metrics import accuracy_score, confusion matrix
+# changing opasity of colors in  the argument inside plt.scatter()
+(alpha = 0.8) #zero is transparent, one is not at all transparent
+# to add grid to plot
+plt.grid(True)
+## Dictionary Datacamp Lecture
+#To get position of a value in a list use
+new variable = variablethatcontainsvalueneeded.index("value you're looking for")
+# converting lists to dictionaries
+pop = [30.55, 2.77, 39.21] # list
+countries = ["afghan", "albania", "algeria"] # list
+world = {"afghan":30.55, "albania":2.77. "algreria":39.21} # dict
+# to find value of albania in dict use
+world["albania"]
+# get the index of albania in list
+ind_albania = countries.index("albania"
+# to print out keys
+print(europe.keys())									
+                              
