@@ -41,3 +41,4 @@ world["sealand"] = 0.23
 "sealand" in world
 # delete value from dict
 del(world["sealand"])
+#i need to do better with my coding time
