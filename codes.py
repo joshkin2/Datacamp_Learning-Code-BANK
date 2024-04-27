@@ -50,7 +50,17 @@ print(europe)
 #turn dict into dataframe called cars
 cars = pd.DataFrame(my_dict)
 #specify row labels in a table
-
+brics.index = ["infos to add"]
+#extracting infos as pandas DF in whole columns in a DF
+brics[['column1', 'column2']]
+#use slicing to extract rows in DF
+brics[1:4] to extract info from the 2nd row to the 4th(n-1)
+#pinpoint and extract all data in a row as panda series and panda DF on a DF using loc
+brics.loc['RU'] or brics.loc[['RU']]
+#for multiple rows
+brics.loc[['RU', 'IN', 'CH']]
+#extracting fro, beginning to end
+brics.loc[:, ['column1', 'column2']]
 
 
 
