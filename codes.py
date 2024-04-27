@@ -61,6 +61,15 @@ brics.loc['RU'] or brics.loc[['RU']]
 brics.loc[['RU', 'IN', 'CH']]
 #extracting fro, beginning to end
 brics.loc[:, ['column1', 'column2']]
+#extract sub-DF
+cars.loc['IN', 'cars_per_cap']
+cars.iloc[3, 0]
+#or
+cars.loc[['IN', 'RU'], 'cars_per_cap']
+cars.iloc[[3, 4], 0]
+#or
+cars.loc[['IN', 'RU'], ['cars_per_cap', 'country']]
+cars.iloc[[3, 4], [0, 1]]
 
 
 
