@@ -70,6 +70,29 @@ cars.iloc[[3, 4], 0]
 #or
 cars.loc[['IN', 'RU'], ['cars_per_cap', 'country']]
 cars.iloc[[3, 4], [0, 1]]
-
-
-
+# to compare values in NumPy
+np.logical_and(bmi > 21, bmi < 22)
+np.logical_or(bmi > 21, bmi < 22)
+np.logical_not(bmi > 21, bmi < 22)
+# to see the digits for the above instead, use
+bmi[np.logical_and(bmi > 21, bmi < 22)
+#if, elif, else (conditional statements)
+z = 4
+if z % 2 == 0 : #True
+    print("z is even")
+# if z is not equal to 0 then else conditon comes in below print 
+else :
+    print("z is odd")
+# using elif
+z = 3
+if z % 2 == 0 :
+    print('z is divisible by 2') #False
+elif z % 3 == 0 :
+    print('z is divisible by 3') #True( if the condition at the top is met, then this line of code won't be executed
+else :
+    print('z is neither divisible by 2 not by 3')
+# filtering pandas DF
+brics["area"] > 8 #print bool of data in the column area that is larger than 8
+# save the above as is_huge, then index it in the main DF to create a subset DF which will contain only values from DF larger than 8
+brics[is_huge]
+    
