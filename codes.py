@@ -111,6 +111,41 @@ error = 50.0
 while error > 1:
     error = error/4
     print(error)  #this wil make error keep getting divided by 4 till it gets to "1"
+#concatenation
+concantenated_string = string1 + string2
+result = "Hello" + "John"</td>    #example of concatenation
+#slicing format
+substring = string_name[start:end]
+#clone list
+vairable = [elemtents]
+new_variable = variable[:]
+# delete element from list
+del(variable[index number]) delvarianle[index number] #one of both
+#add element to end of list
+variable.append(element)
+#count number of occurences of an element in a list
+count = variable.count(element)
+#add multiple elements to a list
+main_variable.extend(variable_containing_elements_to_be_added_to_main_variable)
+#another way to remove element from a list
+new_variable = variable.pop(index no)
+#remove element from a list
+variable.remove(index no)
+#reverse order of a list
+variable.reverse()
+#sort elements in list in ascending or descending order
+variable.sort() or variable.sort(reverse = True)
+#delete key from a dict
+del dict_name[key]
+#to see all the keys in a dict
+dict.keys()
+#see all values in a dict
+dict.values()
+#extract keys in a dict as a list
+list(dict.keys())
+
+
+
 
 
 
