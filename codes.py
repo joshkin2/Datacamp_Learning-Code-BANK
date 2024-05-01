@@ -131,11 +131,47 @@ False and False = False
 False and True = False
 True and False = False
 True and True = True
-
-
-
-
-
+#or operator
+False or Flase = False
+False or True = True
+True or False = True
+True or True = True
+#counting 1-10 with for loop
+for number in range(1,11):
+    print(number)
+#to keep track of both the item and its position in a list
+squares=['red', 'yellow', 'green', 'purple', 'blue']
+for i, square in enumerate(squares):
+    print(i, square)
+#to print out every element in a list
+dates = [1982,1980,1973]
+N = len(dates)
+for i in range(N):
+    print(dates[i])
+# Use for loop to change the elements in list(changes all colors to white)
+squares = ['red', 'yellow', 'green', 'purple', 'blue']
+for i in range(0, 5):
+    print("Before square ", i, 'is',  squares[i])
+    squares[i] = 'white'
+    print("After square ", i, 'is',  squares[i])
+#display values of rating of an album playlist stored in PlayListRatings
+PlayListRatings = [10, 9.5, 10, 8, 7.5, 5, 10, 10]
+i = 0
+rating = PlayListRatings[0]
+while(i < len(PlayListRatings) and rating >= 6):
+    print(rating)
+    i = i + 1 
+    rating = PlayListRatings[i]  
+#extract animals with 7 letters
+Animals = ["lion", "giraffe", "gorilla", "parrots", "crocodile","deer", "swan"]
+New = []
+i=0
+while i<len(Animals):
+    j=Animals[i]
+    if(len(j)==7):
+        New.append(j)
+    i=i+1
+print(New)
 #concatenation
 concantenated_string = string1 + string2
 result = "Hello" + "John"</td>    #example of concatenation
