@@ -111,6 +111,31 @@ error = 50.0
 while error > 1:
     error = error/4
     print(error)  #this wil make error keep getting divided by 4 till it gets to "1"
+#ifelse
+age = 17
+if(age>18):
+    print('you will enter')
+else:
+    print('access denied')
+print(move on)
+#elif
+if(age>18):
+    print('you will enter')
+elif(age==18):
+    print('go in')
+else:
+    print('access denied')
+print('move on')
+#and operator
+False and False = False
+False and True = False
+True and False = False
+True and True = True
+
+
+
+
+
 #concatenation
 concantenated_string = string1 + string2
 result = "Hello" + "John"</td>    #example of concatenation
@@ -143,6 +168,16 @@ dict.keys()
 dict.values()
 #extract keys in a dict as a list
 list(dict.keys())
+#convert list to set
+new_variable = set(variable)
+#extracting comonality between sets
+new_set = set1 & set2
+#union of set
+set1.union(set2)
+#check if a set is a subset(is new_set a subset of set1?)
+new_set.issubset(set1)
+
+
 
 
 
