@@ -212,6 +212,10 @@ new_set = set1 & set2
 set1.union(set2)
 #check if a set is a subset(is new_set a subset of set1?)
 new_set.issubset(set1)
+#to access index info of list elements using for loop
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+for index, area in enumerate(areas):
+    print("room" + str(index) + ":" + str(area))
 
 
 
