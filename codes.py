@@ -216,6 +216,52 @@ new_set.issubset(set1)
 areas = [11.25, 18.0, 20.0, 10.75, 9.50]
 for index, area in enumerate(areas):
     print("room" + str(index) + ":" + str(area))
+#indexing above will start from 0, to make it start from 1 use
+print("room" + str(index+1) + ":" + str(area))
+#smaple of the abpve
+house = [["hallway", 11.25], 
+         ["kitchen", 18.0], 
+         ["living room", 20.0], 
+         ["bedroom", 10.75], 
+         ["bathroom", 9.50]]
+for room in house:
+    print("the " + room[0] + " is " + str(room[1]) + " sqm")
+#print out elemenets in a dict using for loop(output may be unordered)
+world = {"ghana":20,
+         "usa": 2.5.
+         "nigeria":23}
+for key, value in world.items():
+    print(key + "--" + str(value))
+#print out elemenets in a Numpy arrays using for loop
+for val in bmi:
+    print(val)
+#print out elemenets in a 2D Numpy arrays using for loop
+for val in np.nditer(variable name) :
+    print(val)
+#print out label of row and data in row as Panda series in DF
+for lab, row in brics.iterrows():
+    print(lab)
+    print(row)
+#print specific row in DF using for loop
+for lab, row in brics.iterrows():
+    print(lab + ":" + row["capital"])
+#access column values using the column name as a key in a DF for loop
+print(lab + ": " + str(row["column_name"]))
+#add column that contains names of country in uppercase using for loop
+for lab, row in cars.iterrrows():
+    cars.loc[lab, "COUNTRY"] = row["country"].upper()
+#most efficient way to do what is above
+cars["COUNTRY"] = cars["country"].apply(str.upper)
+#add new column for name length in a DF
+for lab, row in brics.iterrows():
+    brics.loc[lab, "name_length"] = len(row["country"])
+print(brics)
+#most efficient way to do what is above
+brics["name_length"] = brics["country"].apply(len)
+print(brics)
+#random generators
+np.random.seed(123)
+np.random.rand()
 
 
 
