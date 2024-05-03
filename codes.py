@@ -262,6 +262,15 @@ print(brics)
 #random generators
 np.random.seed(123)
 np.random.rand()
+#coin toss game
+import numpy as np
+np.random.seed(123)
+coin = np.random.randint(0,2)
+print(coin)
+if coin == 0:
+    print("heads")
+else:
+    print("tails")
 
 
 
