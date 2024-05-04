@@ -218,7 +218,7 @@ for index, area in enumerate(areas):
     print("room" + str(index) + ":" + str(area))
 #indexing above will start from 0, to make it start from 1 use
 print("room" + str(index+1) + ":" + str(area))
-#smaple of the abpve
+#sample of the abpve
 house = [["hallway", 11.25], 
          ["kitchen", 18.0], 
          ["living room", 20.0], 
@@ -232,7 +232,7 @@ world = {"ghana":20,
          "nigeria":23}
 for key, value in world.items():
     print(key + "--" + str(value))
-#print out elemenets in a Numpy arrays using for loop
+#print out elements in a Numpy arrays using for loop
 for val in bmi:
     print(val)
 #print out elemenets in a 2D Numpy arrays using for loop
@@ -275,12 +275,111 @@ else:
 print(np.random.rand())
 #simulate a dice(number will start from 1 and end at 7-1=6)
 print(np.random.randint(1,7)
-
-
-
-
-
-
+#using distribution to calculate odds
+import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(123)
+final_tails = []
+for x in range(100) :
+    tails = [0]
+    for x in range(10) :
+    coin = np.random.randint(0, 2)
+    tails. append(tails[x] + coin)
+final_tails.append(tails[-1])
+plt.hist(final_tails, bins = 10)
+plt.show()
+#proper way to set up random ops with for-if-else
+import numpy as np
+np.random.seed(123)
+outcomes = []
+for x in range(10):
+    coin = np.random.randint(0,2)
+    if coin ==0:
+        outcomes.append('heads')
+    else:
+        outcoes.append('tails')
+print(outcomes)
+#doing the above using random walk
+np.random.seed(123)
+tails = [0]
+for x in range(10):
+    coin = np.random.randint(0,2)
+    tails.append(tails[x] + coin)
+print(tails)
+#more example of the above 
+# Initialize random_walk EG
+random_walk = [0]
+for x in range(100) :
+# Set step: last element in random_walk EG
+step = random_walk[-1]
+# Roll the dice EG
+dice = np.random.randint(1,7)
+# Determine next step EG
+if dice <= 2:
+    step = step - 1
+elif dice <= 5:
+    step = step + 1
+else:
+    step = step + np.random.randint(1,7)
+# append next_step to random_walk EG
+random_walk.append(step)
+# Print random_walk EG
+print(random_walk)
+# to make sure that a variable x never goes below 10 when you decrease it, you can use:
+step = max(0, step -1) 
+#example 
+all_walks = []
+for i in range(5) :
+    random_walk = [0]
+    for x in range(100) :
+        step = random_walk[-1]
+        dice = np.random.randint(1,7)
+        if dice <= 2:
+            step = max(0, step - 1)
+        elif dice <= 5:
+            step = step + 1
+        else:
+            step = step + np.random.randint(1,7)
+        random_walk.append(step)
+    all_walks.append(random_walk)
+# Convert all_walks to NumPy array: np_aw EG
+np_aw = np.array(all_walks)
+# Plot np_aw and show EG
+plt.plot(np_aw)
+plt.show()
+# Clear the figure EG
+plt.clf()
+# Transpose np_aw: np_aw_t EG
+np_aw_t = np.transpose(np_aw)
+# Plot np_aw_t and show EG
+plt.plot(np_aw_t)
+plt.show()
+# EXAMPLE
+# Simulate random walk 500 times EG
+all_walks = []
+for i in range(500) :
+    random_walk = [0]
+    for x in range(100) :
+        step = random_walk[-1]
+        dice = np.random.randint(1,7)
+        if dice <= 2:
+            step = max(0, step - 1)
+        elif dice <= 5:
+            step = step + 1
+        else:
+            step = step + np.random.randint(1,7)
+        if np.random.rand() <= 0.001 :
+            step = 0
+        random_walk.append(step)
+    all_walks.append(random_walk)
+# Create and plot np_aw_t EG
+np_aw_t = np.transpose(np.array(all_walks))
+# Select last row from np_aw_t: ends EG
+ends = np_aw_t[-1,:]
+# Plot histogram of ends, display plot EG
+plt.hist(ends)
+plt.show()
+#
 
 
 
