@@ -271,7 +271,10 @@ if coin == 0:
     print("heads")
 else:
     print("tails")
-
+#generate and print random float after setting seed
+print(np.random.rand())
+#simulate a dice(number will start from 1 and end at 7-1=6)
+print(np.random.randint(1,7)
 
 
 
