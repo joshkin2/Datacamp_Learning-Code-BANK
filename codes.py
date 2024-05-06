@@ -379,7 +379,22 @@ ends = np_aw_t[-1,:]
 # Plot histogram of ends, display plot EG
 plt.hist(ends)
 plt.show()
-#
+#calculate length of string and list
+string_length = len('hello, world')
+list_length = len([1,2,3,4,5])
+#to define functions use def
+def greet(name):
+    print('Hello, ' + name)
+result = greet('Alice')
+print(result)
+#functions and loops
+def print_numbers(limit):
+    for i in range(1, limit+1):
+        print(i)
+print_numbers(5)
+
+
+
 
 
 
