@@ -392,6 +392,52 @@ def print_numbers(limit):
     for i in range(1, limit+1):
         print(i)
 print_numbers(5)
+#print each element in a list using fucntion and for loop
+def Printlist(the-list):
+    for element in the_list:
+        print(element)
+Printlist(['1',1,'the man','abc'])
+# Python Program to Count words in a String using Dictionary
+def freq(string): 
+#step1: A list variable is declared and initialized to an empty list. EG
+words = []
+#step2: Break the string into list of words EG
+words = string.split() # or string.lower().split()
+#step3: Declare a dictionary EG
+Dict = {}
+#step4: Use for loop to iterate words and values to the dictionary EG
+for key in words:
+    Dict[key] = words.count(key)
+#step5: Print the dictionary EG
+    print("The Frequency of words is:",Dict)
+#step6: Call function and pass string in it EG
+freq("Mary had a little lamb Little lamb, little lamb Mary had a little lamb. Its fleece was white as snow And everywhere that Mary went Mary went, Mary went \
+Everywhere that Mary went The lamb was sure to go")
+# Example of global variable
+myFavouriteBand = "AC/DC"
+def getBandRating(bandname):
+    if bandname == myFavouriteBand:
+        return 10.0
+    else:
+        return 0.0
+print("AC/DC's rating is:", getBandRating("AC/DC"))
+print("Deep Purple's rating is:",getBandRating("Deep Purple"))
+print("My favourite band is:", myFavouriteBand)
+# Example of local variable
+def getBandRating(bandname):
+    myFavouriteBand = "AC/DC"
+    if bandname == myFavouriteBand:
+        return 10.0
+    else:
+        return 0.0
+print("AC/DC's rating is: ", getBandRating("AC/DC"))
+print("Deep Purple's rating is: ", getBandRating("Deep Purple"))
+print("My favourite band is", myFavouriteBand)
+
+
+
+
+
 
 
 
