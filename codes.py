@@ -466,13 +466,85 @@ def safe_divide(numerator, denominator):
 numerator = int(input('Enter numerator value: '))
 denominator = int(input('Enter denominator value: '))
 print(safe_divide(numerator,denominator))
-
-
-
-
-
-
-
+#creating a class
+class ClassName:
+    class_attribute = value
+    def __init__(self, attribute1, attribute2, ...):
+        self.attribute1 = attribute1
+        self.attribute2 = attribute2
+    def method1(self, parameter1, parameter2, ...):
+# an example of the above
+class Car:
+    max_speed = 120
+    def __init__(self, make, model, color, speed=0):
+        self.make = make
+        self.model = model
+        self.color = color
+        self.speed = speed
+    def accelerate(self, acceleration):
+        if self.speed + acceleration <= Car.max_speed:
+            self.speed += acceleration
+        else:
+            self.speed = Car.max_speed
+    def get_speed(self):
+        return self.speed
+car1 = Car("Toyota", "Camry", "Blue")
+car2 = Car("Honda", "Civic", "Red")
+car1.accelerate(30)
+car2.accelerate(20)
+print(f"{car1.make} {car1.model} is currently at {car1.get_speed()} km/h.")
+print(f"{car2.make} {car2.model} is currently at {car2.get_speed()} km/h.")
+#another example of the above
+import matplotlib.pyplot as plt
+%matplotlib inline
+# Create a class Circle to draw an actual circle
+class Circle(object):
+    def __init__(self, radius=3, color='blue'):
+        self.radius = radius
+        self.color = color 
+    def add_radius(self, r):
+        self.radius = self.radius + r
+        return(self.radius)
+    def drawCircle(self):
+        plt.gca().add_patch(plt.Circle((0, 0), radius=self.radius, fc=self.color))
+        plt.axis('scaled')
+        plt.show()  
+#to draw the object
+RedCircle.drawCircle()
+#add to radiius of cicle
+RedCircle.add_radius(2)
+# create class rectangle for an actual rectangle(width, height and color are the attributes)
+class Rectangle(object):
+    def __init__(self, width=2, height=3, color='r'):
+        self.width = width
+        self.height = height
+        self.color = color
+    def drawRectangle(self):
+        plt.gca().add_patch(plt.Rectangle((0,0), self.width, self.height, fc=self.color))
+        plt.axis('scaled')
+        plt.show()
+SkinnyBlueRectangle = Rectangle(2,3,'blue')
+#last example of the above(Scenario: Car dealership's inventory management system)
+class Vehicle:
+    color = "white"
+    def __init__(self, max_speed, mileage):
+        self.max_speed = max_speed
+        self.mileage = mileage
+        self.seating_capacity = None
+    def assign_seating_capacity(self, seating_capacity):
+        self.seating_capacity = seating_capacity
+    def display_properties(self):
+        print("Properties of the Vehicle:")
+        print("Color:", self.color)
+        print("Maximum Speed:", self.max_speed)
+        print("Mileage:", self.mileage)
+        print("Seating Capacity:", self.seating_capacity)
+vehicle1 = Vehicle(200, 20)
+vehicle1.assign_seating_capacity(5)
+vehicle1.display_properties()
+vehicle2 = Vehicle(180, 25)
+vehicle2.assign_seating_capacity(4)
+vehicle2.display_properties()
 
 
 
