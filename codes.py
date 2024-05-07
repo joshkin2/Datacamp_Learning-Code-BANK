@@ -398,21 +398,22 @@ def Printlist(the-list):
         print(element)
 Printlist(['1',1,'the man','abc'])
 # Python Program to Count words in a String using Dictionary
-def freq(string): 
+def freq(string, counted_word): 
 #step1: A list variable is declared and initialized to an empty list. EG
-words = []
+    words = []
 #step2: Break the string into list of words EG
-words = string.split() # or string.lower().split()
+    words = string.split() # or string.lower().split()
 #step3: Declare a dictionary EG
-Dict = {}
+    Dict = {}
 #step4: Use for loop to iterate words and values to the dictionary EG
-for key in words:
-    Dict[key] = words.count(key)
+    for key in words:
+        if (key == counted_word):
+            Dict[key] = words.count(key)
 #step5: Print the dictionary EG
     print("The Frequency of words is:",Dict)
 #step6: Call function and pass string in it EG
 freq("Mary had a little lamb Little lamb, little lamb Mary had a little lamb. Its fleece was white as snow And everywhere that Mary went Mary went, Mary went \
-Everywhere that Mary went The lamb was sure to go")
+Everywhere that Mary went The lamb was sure to go", "counted_word")
 # Example of global variable
 myFavouriteBand = "AC/DC"
 def getBandRating(bandname):
@@ -433,6 +434,39 @@ def getBandRating(bandname):
 print("AC/DC's rating is: ", getBandRating("AC/DC"))
 print("Deep Purple's rating is: ", getBandRating("Deep Purple"))
 print("My favourite band is", myFavouriteBand)
+#Exception handling: types of errors. use try and except blocks to prevent program crash
+try:
+    result= 10/ 0
+except ZeroDivisionError:
+    print('Error: Cannot  divide by zero')
+print('outside of try and except block')
+#example of using try, except, finally for exception handling
+a = 1
+try:
+    b = int(input("Please enter a number to divide a"))
+    a = a/b
+except ZeroDivisionError:
+    print("The number you provided cant divide 1 because it is 0")
+except ValueError:
+    print("You did not provide a number")
+except:
+    print("Something went wrong")
+else:
+    print("success a=",a)
+finally:
+    print("Processing Complete")
+#another example using function
+def safe_divide(numerator, denominator):
+    try:
+        result = numerator/denominator
+        return result
+    except ZeroDivisionError:
+        print('Error: Cannot divide by zero.')
+        return None
+numerator = int(input('Enter numerator value: '))
+denominator = int(input('Enter denominator value: '))
+print(safe_divide(numerator,denominator))
+
 
 
 
