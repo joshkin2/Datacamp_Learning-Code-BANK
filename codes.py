@@ -545,7 +545,7 @@ vehicle1.display_properties()
 vehicle2 = Vehicle(180, 25)
 vehicle2.assign_seating_capacity(4)
 vehicle2.display_properties()
-#opening files
+#opening files- 'r' to read file only, 'w' to write
 with open('Example1.txt','r') as file1:
     file_stuff=file1.read()
     print(file_stuff)
@@ -554,6 +554,84 @@ print(file_stuff)
 #ouput every line in a file as an element in a list
 file_stuff=file1.readline()
 print(file_stuff)
+#copy one file to a new file
+with open('Example1.txt','r') as readfile:
+    with open('Example3.txt', 'w') as writefile:
+        for line in readfile:
+            writefile.write(line + '\n')
+#cleaning data and appending the file
+<details><summary>Click here for the solution</summary>
+```python
+def cleanFiles(currentMem,exMem):
+    with open(currentMem,'r+') as writeFile: 
+        with open(exMem,'a+') as appendFile:
+            #get the data
+            writeFile.seek(0)
+            members = writeFile.readlines()
+            #remove header
+            header = members[0]
+            members.pop(0)
+            inactive = [member for member in members if ('no' in member)]
+            '''
+            The above is the same as 
+
+            for member in members:
+            if 'no' in member:
+                inactive.append(member)
+            '''
+            #go to the beginning of the write file
+            writeFile.seek(0) 
+            writeFile.write(header)
+            for member in members:
+                if (member in inactive):
+                    appendFile.write(member)
+                else:
+                    writeFile.write(member)      
+            writeFile.truncate()                
+memReg = 'members.txt'
+exReg = 'inactive.txt'
+cleanFiles(memReg,exReg)
+# code to help you see the files
+headers = "Membership No  Date Joined  Active  \n"
+with open(memReg,'r') as readFile:
+    print("Active Members: \n\n")
+    print(readFile.read())    
+with open(exReg,'r') as readFile:
+    print("Inactive Members: \n\n")
+    print(readFile.read())
+```
+</details>
+#pandas: Loading Data
+df.loc['a', 'Artist']      #to access the name of the artist in row a, colum artist
+#save as CSV
+df1.to_csv('new_songs.csv')
+#create a Series from a list
+data = [10,2,4,5]
+s = pd.Series(data)
+print(s)
+#assessing 3rd row by position
+print(df.iloc[2])
+#assessing 2nd row by label
+print(df.loc[1])
+#extract data of ages more than 25 in a DF
+high_above_25 = df[df['Age'] > 25]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
