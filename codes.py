@@ -545,7 +545,15 @@ vehicle1.display_properties()
 vehicle2 = Vehicle(180, 25)
 vehicle2.assign_seating_capacity(4)
 vehicle2.display_properties()
-
+#opening files
+with open('Example1.txt','r') as file1:
+    file_stuff=file1.read()
+    print(file_stuff)
+print(file1.closed)
+print(file_stuff)
+#ouput every line in a file as an element in a list
+file_stuff=file1.readline()
+print(file_stuff)
 
 
 
