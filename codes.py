@@ -615,6 +615,11 @@ print(df.iloc[2])
 print(df.loc[1])
 #extract data of ages more than 25 in a DF
 high_above_25 = df[df['Age'] > 25]
+#using dot
+u = np.array([1,2])
+v = np.array([3,1])
+result = np.dot(u,v)
+result is 5(1*3+2*1=5)
 
 
 
