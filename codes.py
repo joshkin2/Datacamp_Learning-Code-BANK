@@ -620,6 +620,8 @@ u = np.array([1,2])
 v = np.array([3,1])
 result = np.dot(u,v)
 result is 5(1*3+2*1=5)
+#calculate mean for a colum in a DF
+games_home['PLUS_MINUS'].mean()
 
 
 
