@@ -644,10 +644,35 @@ soup = BeautifulSoup(html_content, 'html.parser')
 print(html_content[:500])
 #pandas read_html for table extraction
 read_html()
-
-
-
-
+#extracting tables from webpages
+import pandas as pd
+URL = 'https://en.wikipedia.org/wiki/List_of_largest_banks'
+tables = pd.read_html(URL)
+df = tables[0]   or use df = tables(2)     #required table will have index 2
+print(df)
+#reading JSON files
+import json
+with open('filesample.json', 'r') as openfile:
+    json_object = json.load(openfile)
+print(json_object)
+#reading XML files
+import pandas as pd
+import xml.etree.ElementTree as etree
+tree = etree.parse('fileExample.xml')
+root = tree.getroot()
+columns = ['Name', 'Phone Number', 'Birthday']
+df = pd.DataFrame(columns = columns)
+for node in root:
+    name = node.find('name).text
+    phonenumber = node.find('phonenumber').text
+    birthday = nod.find('birthday').text
+    df = df.append(pd.Series([name, phonenumber, birthday],
+    index = columns)....., ignore_index = True
+#applying transform to a DF
+df = df.transform(func = lambda x : x + 10)
+print(df)
+#find sqt of each element in the DF
+result = df.transform(func = ['sqrt]')
 
 
 
