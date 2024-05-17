@@ -622,8 +622,28 @@ result = np.dot(u,v)
 result is 5(1*3+2*1=5)
 #calculate mean for a colum in a DF
 games_home['PLUS_MINUS'].mean()
-
-
+#requests
+import requests
+url = 'https://www.sample.com/'
+r = requests.get(url)
+r.status_code : 200
+#WEB SCRAPING 
+#import Beautiful Soup to parse thr web page content EG
+from bs4 import BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
+# Specify the URL of the webpage you want to scrape
+url = 'https://en.wikipedia.org/wiki/IBM'
+# Send an HTTP GET request to the webpage
+response = requests.get(url)
+# Store the HTML content in a variable
+html_content = response.text
+# Create a BeautifulSoup object to parse the HTML
+soup = BeautifulSoup(html_content, 'html.parser')
+# Display a snippet of the HTML content EG
+print(html_content[:500])
+#pandas read_html for table extraction
+read_html()
 
 
 
