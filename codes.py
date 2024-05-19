@@ -663,7 +663,7 @@ root = tree.getroot()
 columns = ['Name', 'Phone Number', 'Birthday']
 df = pd.DataFrame(columns = columns)
 for node in root:
-    name = node.find('name).text
+    name = node.find('name').text
     phonenumber = node.find('phonenumber').text
     birthday = nod.find('birthday').text
     df = df.append(pd.Series([name, phonenumber, birthday],
@@ -676,7 +676,7 @@ result = df.transform(func = ['sqrt]')
 #SAMPLE OF WEBSCRAPING
 import requests
 from bs4 import BeautifulSoup
-page = requests.get('http://EnterWebsiteURL...).text
+page = requests.get('http://EnterWebsiteURL'...).text
 #creates a BeautifulSoup object   EG
 soup = BeautifulSoup(page, 'html.parser')
 #pulls all instances of <a> tag
@@ -785,6 +785,46 @@ msft_data = msft.history(period='max')
 masft_data.head()
 country = usa
 sector = technology
+#how to ignore warnings
+import warnings
+warnings.filterwarnings('ignore', category=FutureWarning)    #ignore all warnings
+#Steps for extracting the data from webpage using web scraping
+#1:  send http request to web page
+url = 'https://sample.html'
+data = requests.get(url).text
+print(data)
+#2:  Parse the HTML content with BeautifulSoup library
+soup = BeautifulSoup(data, 'html5lib')
+#3:  Identify HTML tags and covert table in webpage to DF
+netflix_data = pd.DataFrame(columns=['Date','Open', 'High', 'Low', 'Close', 'Volume'])
+#4:  Use a BeautifulSoup method for extracting data
+# First we isolate the body of the table which contains all the information
+# Then we loop through each row and find all the column values for each row
+for row in soup.find("tbody").find_all('tr'):
+    col = row.find_all("td")
+    date = col[0].text
+    Open = col[1].text
+    high = col[2].text
+    low = col[3].text
+    close = col[4].text
+    adj_close = col[5].text
+    volume = col[6].text
+    
+    # Finally we append the data of each row to the table
+    netflix_data = netflix_data.append({"Date":date, "Open":Open, "High":high, "Low":low, "Close":close, "Adj Close":adj_close, "Volume":volume}, ignore_index=True)    
+#    Print the extracted data
+netflix_data.head()
+#Steps for Extracting data using pandas library
+#1:
+read_html_pandas_data = pd.read_html(url)
+# or convert the BeautifulSoup object to a string
+read_html_pandas_data = pd.read_html(str(soup))
+#since it's just one table in the page we're using 0 but if it was another table we'd use the specific number
+netflix_dataframe = read_html_pandas_data[0]
+netflix_dataframe.head()
+# print last row of DF
+last_row = amazon.data.tail(1)
+print(last_rows)
 
 
 
