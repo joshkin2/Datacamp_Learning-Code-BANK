@@ -825,7 +825,9 @@ netflix_dataframe.head()
 # print last row of DF
 last_row = amazon.data.tail(1)
 print(last_rows)
-
+# reset index
+netflix_data.reset_index(inplace=True)
+#my cloud feature code IBM d1db7a200198cde93bb72f673d0155bc
 
 
 
