@@ -827,7 +827,21 @@ last_row = amazon.data.tail(1)
 print(last_rows)
 # reset index
 netflix_data.reset_index(inplace=True)
-#my cloud feature code IBM d1db7a200198cde93bb72f673d0155bc
+#print 2D numpy array values
+print(variablename.values)
+#print index of columns: col names
+print(variablename.columns)
+#print index for the rows:row numbers or names
+print(variablename.index)
+#subsetting rows
+dogs[dogs['height_cm'] > 50]
+#sort 1 column(smallest to largest)
+df.sort_values('column_name', ascending= False)
+#sort multiple columns
+df.sort_values(['column_name1', 'column_name2'])
+#EG of sort multiple colums
+home_fam = house.sort_values(['region','family'], ascending=[True,False])
+
 
 
 
