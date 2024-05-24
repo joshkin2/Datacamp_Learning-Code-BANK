@@ -841,8 +841,30 @@ df.sort_values('column_name', ascending= False)
 df.sort_values(['column_name1', 'column_name2'])
 #EG of sort multiple colums
 home_fam = house.sort_values(['region','family'], ascending=[True,False])
-
-
+#select multiple columns of a DF
+df[['col_a', 'col_b']]
+#filtering or selecting rows
+dogs[dogs['height_cm'] > 60]
+#filtering or selecting rows under multiple conditions [for and or condition use "|"]
+dogs[(dogs['height_cm'] > 60) & (dogs['color'] == 'tan')]
+#subsettin rows by categorical variables using .isin() method. homelessness is the DF
+canu = ["California", "Arizona", "Nevada", "Utah"]
+mojave_homelessness = homelessness["state"].isin(canu)
+homelessness[mojave_homelessness]
+print(mojave_homelessness)
+#Adding new column
+dogs['height_m'] = dogs['height_cm'] / 100
+# EXAMPLE: Which state has the highest number of homeless individuals per 10,000 people in the state?
+# Create indiv_per_10k col as homeless individuals per 10k state pop   EG
+homelessness["indiv_per_10k"] = 10000 * homelessness["individuals"] / homelessness["state_pop"] 
+# Subset rows for indiv_per_10k greater than 20   EG
+high_homelessness = homelessness[homelessness["indiv_per_10k"] > 20]
+# Sort high_homelessness by descending indiv_per_10k   EG
+high_homelessness_srt = high_homelessness.sort_values(["indiv_per_10k"], ascending= False)
+# From high_homelessness_srt, select the state and indiv_per_10k cols   EG
+result = high_homelessness_srt[["state", "indiv_per_10k"]]
+# To get cummulative sum
+dogs['weight_kg'].cumsum()
 
 
 
