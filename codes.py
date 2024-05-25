@@ -865,6 +865,12 @@ high_homelessness_srt = high_homelessness.sort_values(["indiv_per_10k"], ascendi
 result = high_homelessness_srt[["state", "indiv_per_10k"]]
 # To get cummulative sum
 dogs['weight_kg'].cumsum()
+#mean, median, min, max of column in a DF
+print(sales["weekly_sales"].mean())
+#custom fucntion using agg on multiple columns
+def iqr(column):
+    return column.quantile(0.75) - column.quantile(o.25)
+print(sales["temperature_c", "fuel", "unemployment"].agg(iqr))   #to calculate it with median we can edit ".agg([iqr, np.median])"
 
 
 
