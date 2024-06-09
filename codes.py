@@ -871,6 +871,20 @@ print(sales["weekly_sales"].mean())
 def iqr(column):
     return column.quantile(0.75) - column.quantile(o.25)
 print(sales["temperature_c", "fuel", "unemployment"].agg(iqr))   #to calculate it with median we can edit ".agg([iqr, np.median])"
+#create new column in DF
+df['new_column'] = df['existing_column'] / 100
+#drop duplicate names   (name is the column we want to check for duplicates)
+vet_visits.drop_duplicates(subset='name')
+#drop duplicate pairs
+unique_dogs = vet_visits.drop_duplicates(subset= ['name', 'breed'])
+# Subset the rows where is_holiday is True and drop duplicate dates
+holiday_dates = sales[sales['is_holiday']].drop_duplicates(subset='date')
+#sort and count values
+unique_dogs['breed'].value_counts(sort=True)
+#proportions  (get percentage of values)
+unique_dogs['breed'].value_counts(normalize=True)
+
+
 
 
 
