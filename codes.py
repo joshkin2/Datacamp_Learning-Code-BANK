@@ -883,6 +883,10 @@ holiday_dates = sales[sales['is_holiday']].drop_duplicates(subset='date')
 unique_dogs['breed'].value_counts(sort=True)
 #proportions  (get percentage of values)
 unique_dogs['breed'].value_counts(normalize=True)
+# Get the proportion of departments of each number and sort
+dept_props_sorted = store_depts["department"].value_counts(sort=True, normalize=True)
+print(dept_props_sorted)
+
 
 
 
