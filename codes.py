@@ -886,10 +886,25 @@ unique_dogs['breed'].value_counts(normalize=True)
 # Get the proportion of departments of each number and sort
 dept_props_sorted = store_depts["department"].value_counts(sort=True, normalize=True)
 print(dept_props_sorted)
-
-
-
-
+#Grouped summaries   (group by color variable and slect the weight column along with getting mean)
+dogs.groupby('color')['weight_kg'].mean()
+#Multiple grouped summaries
+dogs.groupby('color')['weight_kg'].agg([min, max, sum])
+#Grouping by multiple variables
+dogs.groupby(['color', 'breed'])['weight_kg'].mean()
+#Group many groups, many summaries
+dogs.groupby(['color', 'breed'])[['weight_kg', 'height_cm']].mean()
+# Calc total weekly sales
+sales_all = sales["weekly_sales"].sum()
+# Subset for type A stores, calc total weekly sales
+sales_A = sales[sales["type"] == "A"]["weekly_sales"].sum()
+# Subset for type B stores, calc total weekly sales
+sales_B = sales[sales["type"] == "B"]["weekly_sales"].sum()
+# Subset for type C stores, calc total weekly sales
+sales_C = sales[sales["type"] == "C"]["weekly_sales"].sum()
+# Get proportion for each type
+sales_propn_by_type = [sales_A, sales_B, sales_C] / sales_all
+print(sales_propn_by_type)
 
 
 
