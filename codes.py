@@ -905,9 +905,16 @@ sales_C = sales[sales["type"] == "C"]["weekly_sales"].sum()
 # Get proportion for each type
 sales_propn_by_type = [sales_A, sales_B, sales_C] / sales_all
 print(sales_propn_by_type)
-
-
-
+# For each store type, aggregate unemployment and fuel_price_usd_per_l: get min, max, mean, and median
+unemp_fuel_stats = sales.groupby("type")[["unemployment", "fuel_price_usd_per_l"]].agg([min, max, np.mean, np.median])
+#Group by to pivot table
+dogs.pivot_table(values='weight_kg', index='color')
+#Multiple statistics with pivot table
+dogs.pivot_table(values='weight_kg', index='color', aggfunc=[np.mean, np.median])
+#Pivot on two variables
+dogs.pivot_table(values='weight_kg', index='color', columns'breed')
+#filling missing values in pivot tables
+dogs.pivot_table(values='weight_kg', index='color', columns='breed', fill_value=0)
 
 
 
