@@ -949,18 +949,3 @@ dogs_ind3.sort_index()
 dogs_ind3.sort_index(level=['color', 'breed'], ascending= [True, False])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
