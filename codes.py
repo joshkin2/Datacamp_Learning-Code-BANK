@@ -925,15 +925,28 @@ mean_med_sales_by_type = sales.pivot_table(values="weekly_sales", index="type", 
 mean_sales_by_type_holiday = sales.pivot_table(values="weekly_sales", index="type", columns="is_holiday")
 # Print mean weekly_sales by department and type; fill missing values with 0
 print(sales.pivot_table(values="weekly_sales", index="department", columns="type", fill_value=0))
-
-
-
-
-
-
-
-
-
+#Setting a column as index
+dogs_ind= dogs.set_index('name')
+#Remove an index
+dogs_ind.reset_index()
+#Dropping an index
+dogs_ind.reset_index(drop=True)
+#Subsetting with indexes
+dogs[dogs['name'].isin(['Bella', 'stella'])]
+#Subsetting with Loc- filters on index values
+dogs_ind.loc[['Bella', 'Stella']]
+#subsetting on duplicated index values
+dogs_ind2.loc['Labrador']
+#Multi-level indexes-hierarchical indexes
+dogs_ind3 = dogs.set_index(['breed', 'color'])
+#subset outer level with a list
+dogs_ind3.loc[['Labrador', 'Chihuahua']]
+#subset inner levels with a list of tuples
+dogs_ind3.loc[[('Labra', 'Brown'), ('chihua', 'Tan')]]
+#sorting by index values
+dogs_ind3.sort_index()
+#Controlling sort_index
+dogs_ind3.sort_index(level=['color', 'breed'], ascending= [True, False])
 
 
 
