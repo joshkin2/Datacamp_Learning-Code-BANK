@@ -947,5 +947,43 @@ dogs_ind3.loc[[('Labra', 'Brown'), ('chihua', 'Tan')]]
 dogs_ind3.sort_index()
 #Controlling sort_index
 dogs_ind3.sort_index(level=['color', 'breed'], ascending= [True, False])
+# Sort temperatures_ind by index values at the city level
+print(temperatures_ind.sort_index(level="city"))
+# Sort temperatures_ind by country then descending city
+print(temperatures_ind.sort_index(level=["country", "city"], ascending= [True, False]))
+# Sort index in DF before slicing
+dogs_srt = dogs.set_index(['breed', 'color']).sort_index()
+#Slicing outer index level
+dogs_srt.loc['chow': 'poodle']
+#Slicing inner index levels
+dogs_srt.loc[('Labrador', 'Brown'): ('Schnauzer', 'Grey')]
+#Slicing columns
+dogs_srt.loc[:, 'name':'height_cm']
+#Slice rows and columns
+dogs_srt.loc[('Lab', 'Brown'):('Sch', 'Grey'), 'name':'height_cm']
+#slicing dates
+dogs.loc['2014-08-25':'2016-09-16'] or dogs.loc['2014':'2016']
+#Subsetting by row/column number
+dogs.iloc[2:5,1:4]
+# Use Boolean conditions to subset temperatures for rows in 2010 and 2011
+temperatures_bool = temperatures[(temperatures["date"] >= "2010-01-01") & (temperatures["date"]<= "2011-01-01")]
+# Use slicing to get the first 5 rows
+print(temperatures.iloc[:5])
+# Use slicing to get columns 3 to 4
+print(temperatures.iloc[:,2:4])
+# Use slicing in both directions at once
+print(temperatures.iloc[:5,2:4])
+#Axis argument :index means- calculate the stats across rows
+dogs_height.mean(axis="index")
+#Axis argument for across columns
+dogs_height.mean(axis="columns")
+
+
+
+
+
+
+
+
 
 
