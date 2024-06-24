@@ -977,12 +977,41 @@ print(temperatures.iloc[:5,2:4])
 dogs_height.mean(axis="index")
 #Axis argument for across columns
 dogs_height.mean(axis="columns")
-
-
-
-
-
-
+#Access the components of a date (year, month and day)
+temperatures["year"] = temperatures["date"].dt.year
+# Pivot avg_temp_c by country and city vs year
+temp_by_country_city_vs_year = temperatures.pivot_table("avg_temp_c", index=["country","city"], columns="year")
+# Get the worldwide mean temp by year
+mean_temp_by_year = temp_by_country_city_vs_year.mean()
+# Filter for the year that had the highest mean temp
+print(mean_temp_by_year[mean_temp_by_year == mean_temp_by_year.max()])
+# Get the mean temp by city
+mean_temp_by_city = temp_by_country_city_vs_year.mean(axis="columns")
+# Filter for the city that had the lowest mean temp
+print(mean_temp_by_city[mean_temp_by_city == mean_temp_by_city.min()])
+#Creating bar plots
+avg_weight_by_breed.plot(kind="bar", title= "Mean Weight by Dog Breed")
+plt.show()
+#Creating line plots
+sully.plot(x='date', y='weight_kg', kind= 'line')
+plt.show()
+#Rotating axis labels
+sully.plot(x='date', y='weight_kg', kind= 'line', rot=45)
+#Creating Scatter plots
+dog_pack.plot(x='height_cm', y='wight_kg', kind= 'scatter')
+#Layering plots and adding a legend and transparency(alpha)
+dog_pack[dog_pack['sex']=='F']['height_cm'].hist(alpha=0.7)
+dog_pack[dog_pack['sex']=='M']['height_cm'].hist(alpha=0.7)
+plt.legend(['F', 'M'])
+plt.show()
+# Get the total number of avocados sold of each size
+nb_sold_by_size = avocados.groupby("size")["nb_sold"].sum()
+#Subset avocados for the conventional type price column. Create a histogram.
+avocados[avocados["type"]=="conventional"]["avg_price"].hist()
+#Detecting missing values
+dogs.isna()
+#Detecting any missing values
+dog.isna().any()
 
 
 
