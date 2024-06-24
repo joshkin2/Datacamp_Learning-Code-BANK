@@ -1012,6 +1012,42 @@ avocados[avocados["type"]=="conventional"]["avg_price"].hist()
 dogs.isna()
 #Detecting any missing values
 dog.isna().any()
+#Counting missing values
+dogs.isna().sum()
+#Plotting missing values
+dogs.isna().sum().plot(kind='bar')
+plt.show()
+#Removing missing values
+dogs.dropna()
+#Replacing missing values(best if you are working with large data)
+dogs.fillna(0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
