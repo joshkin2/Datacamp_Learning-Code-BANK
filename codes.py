@@ -907,6 +907,8 @@ sales_propn_by_type = [sales_A, sales_B, sales_C] / sales_all
 print(sales_propn_by_type)
 # For each store type, aggregate unemployment and fuel_price_usd_per_l: get min, max, mean, and median
 unemp_fuel_stats = sales.groupby("type")[["unemployment", "fuel_price_usd_per_l"]].agg([min, max, np.mean, np.median])
+# For each airline, select nb_bumped and total_passengers and sum
+airline_totals = airline_bumping.groupby("airline")[["nb_bumped", "total_passengers"]].sum()
 #Group by to pivot table
 dogs.pivot_table(values='weight_kg', index='color')
 #Multiple statistics with pivot table
@@ -1039,9 +1041,12 @@ dict_o_l= {
     'dob':['2019-03-14', '2019-05-09']
 }
 new_dogs = pd.DataFrame(dict_o_l)
-
-
-
+# CSV to DataFrame
+new_dogs = pd.read_csv('new_dogs.csv")
+# DataFrame to CSV
+new_dogs.to_csv('new_dogs_with_bmi.csv')
+# Create new col, bumps_per_10k: no. of bumps per 10k passengers for each airline
+airline_totals["bumps_per_10k"] = airline_totals["nb_bumped"] /airline_totals["total_passengers"] * 10000
 
 
 
