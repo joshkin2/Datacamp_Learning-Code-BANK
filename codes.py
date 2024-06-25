@@ -1021,6 +1021,25 @@ plt.show()
 dogs.dropna()
 #Replacing missing values(best if you are working with large data)
 dogs.fillna(0)
+#Creating dict(From a list of dicts-row by row) or (From a dict of lists-column by column)
+my_dict= {
+    'Key1': 'value',
+    'Key2': 'another. value',
+    'Key3': 1952
+}
+#List of dict-by row(keys are the columns, values are the inputs per rows
+l_o_dicts= [
+    {'name':'ginger', 'breed':'Dash', 'height':22, 'weight':10, 'dob': '2019-03-14'},
+    {'name':'scot', 'breed': 'dalma', 'height':59, 'weight':25, 'dob':'2019-05-09'}
+]
+new_dogs = pd.DataFrame(l_o_dicts)
+#Dict of lists-by column
+dict_o_l= {
+    'name': ['ginger', 'scot'], 'breed':['Dash', 'dalma'], 'height': [22,59], 'weight':[10,25],
+    'dob':['2019-03-14', '2019-05-09']
+}
+new_dogs = pd.DataFrame(dict_o_l)
+
 
 
 
