@@ -1058,7 +1058,8 @@ counted_df = licenses_owners.groupby('title').agg({'account':'count'})
 sorted_df = counted_df.sort_values(by= 'account', ascending= False)
 #formula for merging 3 or more tables
 df1.merge(df2, on= 'col')\.merge(df3, on= 'col')
-
+# Group by ward, pop_2010, and vacant, then count the number of accounts
+pop_vac_lic = land_cen_lic.groupby(['ward', 'pop_2010', 'vacant'], as_index=False).agg({'account': 'count'})
 
 
 
