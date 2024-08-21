@@ -1047,7 +1047,17 @@ new_dogs = pd.read_csv('new_dogs.csv")
 new_dogs.to_csv('new_dogs_with_bmi.csv')
 # Create new col, bumps_per_10k: no. of bumps per 10k passengers for each airline
 airline_totals["bumps_per_10k"] = airline_totals["nb_bumped"] /airline_totals["total_passengers"] * 10000
-
+# merging = joining, tables = Dataframes
+# Merging tables( join ward df on census df) this is inner join
+wards_census = wards.merge(census, on= 'ward')
+# add suffix to differentiate source of df during merge
+wards_census = wards.merge(census, on= 'ward', suffixes=('_ward', '_cen'))
+# Group the results by title then count the number of accounts
+counted_df = licenses_owners.groupby('title').agg({'account':'count'})
+# Sort the counted_df in descending order
+sorted_df = counted_df.sort_values(by= 'account', ascending= False)
+#formula for merging 3 or more tables
+df1.merge(df2, on= 'col')\.merge(df3, on= 'col')
 
 
 
