@@ -1069,8 +1069,10 @@ print(number_of_missing_fin)
 #OR
 # Count the number of rows in the budget column that are missing
 number_of_missing_fin = movies_financials['budget'].isnull().sum()
-
-
+# MERGE WITH RIGHT JOIN
+tv_movies = movies.merge(tv_genre, how='right', left_on='id', right_on== 'movie_id')
+# OUTER JOIN
+family_comedy = family.merge(comedy, on='movie_id', how='outer', suffixes=('_fam', '_com'))
 
 
 
