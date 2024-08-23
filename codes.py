@@ -1060,7 +1060,15 @@ sorted_df = counted_df.sort_values(by= 'account', ascending= False)
 df1.merge(df2, on= 'col')\.merge(df3, on= 'col')
 # Group by ward, pop_2010, and vacant, then count the number of accounts
 pop_vac_lic = land_cen_lic.groupby(['ward', 'pop_2010', 'vacant'], as_index=False).agg({'account': 'count'})
-
+#LEFT JOIN merge
+movies_taglines= movies.merge(taglines, on='id', how= 'left')
+#check null values in a column and count them
+null_budget = movies_financials['budget'].isnull()
+number_of_missing_fin = null_budget.sum()
+print(number_of_missing_fin)
+#OR
+# Count the number of rows in the budget column that are missing
+number_of_missing_fin = movies_financials['budget'].isnull().sum()
 
 
 
