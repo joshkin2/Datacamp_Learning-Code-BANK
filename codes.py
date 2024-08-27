@@ -1062,7 +1062,7 @@ df1.merge(df2, on= 'col')\.merge(df3, on= 'col')
 pop_vac_lic = land_cen_lic.groupby(['ward', 'pop_2010', 'vacant'], as_index=False).agg({'account': 'count'})
 #LEFT JOIN merge
 movies_taglines= movies.merge(taglines, on='id', how= 'left')
-#check null values in a column and count them
+# check null values in a column and count them
 null_budget = movies_financials['budget'].isnull()
 number_of_missing_fin = null_budget.sum()
 print(number_of_missing_fin)
@@ -1078,8 +1078,45 @@ scifi_only = action_scifi[action_scifi['genre_act'].isnull()]
 # Create an index that returns true if name_1 or name_2 are null
 m = ((iron_1_and_2['name_1'].isnull()) | 
      (iron_1_and_2['name_2'].isnull()))
-#SELF JOIN (merge a table to itself, when: hierarchical and sequential relationship present)
+# SELF JOIN (merge a table to itself, when: hierarchical and sequential relationship present)
 original_sequels = sequels.merge(sequels, left_on= 'sequel', right_on= 'id', suffixes = ('_org', '_seq'))
+#Create a Boolean index, named boolean_filter, that selects rows from the left table with the job of 'Director' and avoids rows with the job of 'Director' in the right table.
+boolean_filter = ((crews_self_merged['job_dir'] == 'Director') & (crews_self_merged['job_crew'] != 'Director'))
+# MERGING ON INDEXES
+# Merge to the movies table the ratings table on the index
+movies_ratings = movies.merge(ratings, on='id', how='left')
+# MULTIINDEX MERGE
+samuel_casts = samuel.merge(casts, on=['movie_id', 'cast_id'])
+# INDEX MERGE WITH LEFT_ON AND RIGHT_ON
+movies_genres = movies.merge(movie_to_genres, left_on= 'id'
+                             , left_index= True,
+                             right_on= 'movie_id', right_index = True)
+# Select the title_org, title_seq, and diff columns from orig_seq
+titles_diff = orig_seq[['title_org', 'title_seq', 'diff']]                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
