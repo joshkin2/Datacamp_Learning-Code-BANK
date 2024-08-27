@@ -1093,8 +1093,13 @@ movies_genres = movies.merge(movie_to_genres, left_on= 'id'
                              right_on= 'movie_id', right_index = True)
 # Select the title_org, title_seq, and diff columns from orig_seq
 titles_diff = orig_seq[['title_org', 'title_seq', 'diff']]                        
-
-
+# FILTERING JOINS (SEMI JOIN) - filtering genres by what's in top tracks table
+genres_tracks = genres.merge(top_tracks, on = 'gid')
+top_genres = genres[genres['gid'].isin(genres_tracks['gid'])]
+# ANTI JOIN
+genres_tracks = genres.merge(top_tracks, on= 'gid', how = 'left', indicator= True)
+gid_list = genres_tracks.loc[genres_tracks['_merge'] == 'left_only', 'gid']
+non_top_genres = genres[genres['gid'].isin(gid_list)]
 
 
 
