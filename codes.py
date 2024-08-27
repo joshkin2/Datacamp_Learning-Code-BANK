@@ -1070,13 +1070,16 @@ print(number_of_missing_fin)
 # Count the number of rows in the budget column that are missing
 number_of_missing_fin = movies_financials['budget'].isnull().sum()
 # MERGE WITH RIGHT JOIN
-tv_movies = movies.merge(tv_genre, how='right', left_on='id', right_on== 'movie_id')
+tv_movies = movies.merge(tv_genre, how='right', left_on='id', right_on= 'movie_id')
 # OUTER JOIN
 family_comedy = family.merge(comedy, on='movie_id', how='outer', suffixes=('_fam', '_com'))
-
-
-
-
+# SUBSET ROWS WHERE COLUMN IS NULL (isnull)
+scifi_only = action_scifi[action_scifi['genre_act'].isnull()]
+# Create an index that returns true if name_1 or name_2 are null
+m = ((iron_1_and_2['name_1'].isnull()) | 
+     (iron_1_and_2['name_2'].isnull()))
+#SELF JOIN (merge a table to itself, when: hierarchical and sequential relationship present)
+original_sequels = sequels.merge(sequels, left_on= 'sequel', right_on= 'id', suffixes = ('_org', '_seq'))
 
 
 
