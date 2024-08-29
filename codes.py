@@ -1096,17 +1096,26 @@ titles_diff = orig_seq[['title_org', 'title_seq', 'diff']]
 # FILTERING JOINS (SEMI JOIN) - filtering genres by what's in top tracks table
 genres_tracks = genres.merge(top_tracks, on = 'gid')
 top_genres = genres[genres['gid'].isin(genres_tracks['gid'])]
-# ANTI JOIN
+# ANTI JOIN STEPS
+# 1 Merge genres and top_tracks
 genres_tracks = genres.merge(top_tracks, on= 'gid', how = 'left', indicator= True)
+#2# Select the gid column where _merge is left_only
 gid_list = genres_tracks.loc[genres_tracks['_merge'] == 'left_only', 'gid']
+#3 Get non top genres
 non_top_genres = genres[genres['gid'].isin(gid_list)]
-
-
-
-
-
-
-
+# Use .isin() to subset the rows of non_mus_tcks where tid is in the tid column of tracks_invoices.
+top_tracks = non_mus_tcks[non_mus_tcks['tid'].isin(tracks_invoices['tid'])]
+# CONCATENATE DF TOGETHER VERTICALLY
+# BASIC CONCATENATION
+pd.concat([inv_jan, inv_feb, inv_mar])
+# IGNORING INDEX WHEN CONCATENATING
+pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= True)
+# Setting labels to original tables usign keys
+pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= False, keys = ['jan', 'feb', 'mar'])
+# CONCATENATE TABLES WITH DIFFERENT COLUMN NAMES default join is 'outer'
+pd.concat([inv_jan, inv_feb], sort=True)
+# concatenate matching columns
+pd.concat([inv_jan, inv_feb], join= 'inner')
 
 
 
