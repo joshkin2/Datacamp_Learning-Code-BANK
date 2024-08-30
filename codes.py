@@ -1105,6 +1105,15 @@ gid_list = genres_tracks.loc[genres_tracks['_merge'] == 'left_only', 'gid']
 non_top_genres = genres[genres['gid'].isin(gid_list)]
 # Use .isin() to subset the rows of non_mus_tcks where tid is in the tid column of tracks_invoices.
 top_tracks = non_mus_tcks[non_mus_tcks['tid'].isin(tracks_invoices['tid'])]
+# Performing SEMI JOIN steps
+# 1 Merge the non_mus_tck and top_invoices tables on tid
+tracks_invoices = non_mus_tcks.merge(top_invoices, on='tid')
+# 2 Use .isin() to subset non_mus_tcks to rows with tid in tracks_invoices
+top_tracks = non_mus_tcks[non_mus_tcks['tid'].isin(tracks_invoices['tid'])]
+# 3 Group the top_tracks by gid and count the tid rows
+cnt_by_gid = top_tracks.groupby(['gid'], as_index=False).agg({'tid':'count'})
+# 4 Merge the genres table to cnt_by_gid on gid and print
+print(cnt_by_gid.merge(genres, on='gid'))
 # CONCATENATE DF TOGETHER VERTICALLY
 # BASIC CONCATENATION
 pd.concat([inv_jan, inv_feb, inv_mar])
@@ -1116,6 +1125,7 @@ pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= False, keys = ['jan', 'feb'
 pd.concat([inv_jan, inv_feb], sort=True)
 # concatenate matching columns
 pd.concat([inv_jan, inv_feb], join= 'inner')
+
 
 
 
