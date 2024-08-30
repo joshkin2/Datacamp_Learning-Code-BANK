@@ -1047,7 +1047,7 @@ new_dogs = pd.read_csv('new_dogs.csv")
 new_dogs.to_csv('new_dogs_with_bmi.csv')
 # Create new col, bumps_per_10k: no. of bumps per 10k passengers for each airline
 airline_totals["bumps_per_10k"] = airline_totals["nb_bumped"] /airline_totals["total_passengers"] * 10000
-# merging = joining, tables = Dataframes
+# merging = joining, tables = Dataframes (default= inner)
 # Merging tables( join ward df on census df) this is inner join
 wards_census = wards.merge(census, on= 'ward')
 # add suffix to differentiate source of df during merge
@@ -1117,7 +1117,7 @@ print(cnt_by_gid.merge(genres, on='gid'))
 # CONCATENATE DF TOGETHER VERTICALLY
 # BASIC CONCATENATION
 pd.concat([inv_jan, inv_feb, inv_mar])
-# IGNORING INDEX WHEN CONCATENATING
+# IGNORING INDEX WHEN CONCATENATING (index goes from 0 to n-1
 pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= True)
 # Setting labels to original tables usign keys
 pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= False, keys = ['jan', 'feb', 'mar'])
@@ -1127,9 +1127,14 @@ pd.concat([inv_jan, inv_feb], sort=True)
 pd.concat([inv_jan, inv_feb], join= 'inner')
 # Group the invoices by the index keys and find avg of the total column
 avg_inv_by_month = inv_jul_thr_sep.groupby(level=0).agg({'total':'mean'})
-
-
-
+# VALIDATING MERGES
+.merge(validate='one_to_one' or 'one_to_many' or 'many_to_one' or 'many_to_many')
+# VERIFYING CONCATENATIONS (False is default value)
+.concat(verify_integrity= False)
+# USING MERGE_ORDERED() (default= outer) -- FOR ORDERED DATA/TIME SERIES, FILLING MISSING VALUES
+pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'))
+# FORWARD FILL TO FILL MISSING WITH PREVIOUS VALUE
+pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'), fill_method= 'ffill')
 
 
 
