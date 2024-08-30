@@ -1123,8 +1123,10 @@ pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= True)
 pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= False, keys = ['jan', 'feb', 'mar'])
 # CONCATENATE TABLES WITH DIFFERENT COLUMN NAMES default join is 'outer'
 pd.concat([inv_jan, inv_feb], sort=True)
-# concatenate matching columns
+# concatenate matching columns9showing column names in 2 tables
 pd.concat([inv_jan, inv_feb], join= 'inner')
+# Group the invoices by the index keys and find avg of the total column
+avg_inv_by_month = inv_jul_thr_sep.groupby(level=0).agg({'total':'mean'})
 
 
 
