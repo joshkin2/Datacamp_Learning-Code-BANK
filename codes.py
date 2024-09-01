@@ -1135,6 +1135,11 @@ avg_inv_by_month = inv_jul_thr_sep.groupby(level=0).agg({'total':'mean'})
 pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'))
 # FORWARD FILL TO FILL MISSING WITH PREVIOUS VALUE
 pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'), fill_method= 'ffill')
+# Use merge_ordered() to merge gdp and sp500 on year and date
+gdp_sp500 = pd.merge_ordered(gdp, sp500, left_on= 'year', right_on='date', how='left')
+#Subset the gdp_sp500 table, select the gdp and returns columns, and save as gdp_returns
+gdp_returns = gdp_sp500[['gdp', 'returns']]
+
 # calculate mean and median of a column in a sales dataset
 sales['unit_price'].agg([np.mean, np.median])
 # calculate column range using range fucntion
