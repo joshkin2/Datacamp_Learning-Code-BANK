@@ -1135,8 +1135,12 @@ avg_inv_by_month = inv_jul_thr_sep.groupby(level=0).agg({'total':'mean'})
 pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'))
 # FORWARD FILL TO FILL MISSING WITH PREVIOUS VALUE
 pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'), fill_method= 'ffill')
-
-
+# calculate mean and median of a column in a sales dataset
+sales['unit_price'].agg([np.mean, np.median])
+# calculate column range using range fucntion
+def range(column):
+    return column.max() - column.min()
+print(sales['unit_price'].agg(range)
 
 
 
