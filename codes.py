@@ -1150,10 +1150,21 @@ print(sales['unit_price'].agg(range)
 # MERGE_ASOF() - similar to merge_ordered() left join, match on equal to or nearest value
 # USE MERGE_ASOF() WHEN- DATA SAMPLED FROM A PROCESS, DEVELOPING A TRAINING SET(NO DATA LEAKAGE)
 pd.merge_asof(visa, ibm, on='date_time', suffixes=('_visa', '_ibm'))
-# use direction argument 'forward' to select 1st row on right table whose 'on' key column is greater than or equal to left keys column
+# use direction argument 'forward' to select 1st row on right table whose 'on' key column is greater than or equal to left keys column, use 'nearest' where rows with nearest timees are matched
 pd.merge_asof(visa, ibm, on=['date_time'], suffixes=('_visa', '_ibm"), direction='forward')      
-
-
+# Compute price diff 1
+price_diffs = jpm_wells_bac.diff()
+# Plot the price diff of the close of jpm, wells and bac only 2
+price_diffs.plot(y=['close_jpm', 'close_wells', 'close_bac'])
+plt.show()
+# Using merge_asof() to create dataset STEPS
+# 1 Merge gdp and recession on date using merge_asof()
+gdp_recession = pd.merge_asof(gdp,recession, on='date')
+# 2 Create a list based on the row value of gdp_recession['econ_status']
+is_recession = ['r' if s=='recession' else 'g' for s in gdp_recession['econ_status']]
+# 3 Plot a bar chart of gdp_recession
+dp_recession.plot(kind='bar', y='gdp', x='date', color=is_recession, rot=90)
+plt.show()
 
 
 
