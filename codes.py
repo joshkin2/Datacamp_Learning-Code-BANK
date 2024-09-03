@@ -1175,9 +1175,12 @@ stocks.query('nike > 90 and disney <140')
 stocks.query('nike > 96 or disney < 98')
 # USING QUERY TO SELECT TEXT
 stocks_long.query('stock=="disney" or (stock==="nike" and close < 90)')
-
-
-
+# RESHAPING DATA WITH .MELT() id_vars= columns from original dataset we don't want to change
+social_fin_tall = social_fin.melt(id_vars=['financial','company'])
+# MELTING WITH VALUE_VARS, value_vars argument allows controlling which columns are unpivoted
+social_fin_tall = social_fin.melt(id_vars=['financial','company'], value_vars=['2018','2017')
+# MELTING WITH COLUMN NAMES
+social_fin_tall = social_fin.melt(id_vars=['financial','company'], value_vars=['2018','2017'], var_name='year', value_name='dollars')
 
 
 
