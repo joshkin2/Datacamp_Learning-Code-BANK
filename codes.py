@@ -873,6 +873,8 @@ def iqr(column):
 print(sales["temperature_c", "fuel", "unemployment"].agg(iqr))   #to calculate it with median we can edit ".agg([iqr, np.median])"
 #create new column in DF
 df['new_column'] = df['existing_column'] / 100
+# Add a column named gdp_per_capita to gdp_pop that divides the gdp by pop
+gdp_pop['gdp_per_capita']= gdp_pop['gdp'] / gdp_pop['pop']
 #drop duplicate names   (name is the column we want to check for duplicates)
 vet_visits.drop_duplicates(subset='name')
 #drop duplicate pairs
@@ -1165,8 +1167,14 @@ is_recession = ['r' if s=='recession' else 'g' for s in gdp_recession['econ_stat
 # 3 Plot a bar chart of gdp_recession
 dp_recession.plot(kind='bar', y='gdp', x='date', color=is_recession, rot=90)
 plt.show()
-
-
+# SELECTING DATA WITH .QUERY()
+# QUERYING ON SINGLE CONDITION
+stocks.query('nike >= 90')
+# QUERYING ON MULTIPLE CONDITIONS
+stocks.query('nike > 90 and disney <140')
+stocks.query('nike > 96 or disney < 98')
+# USING QUERY TO SELECT TEXT
+stocks_long.query('stock=="disney" or (stock==="nike" and close < 90)')
 
 
 
