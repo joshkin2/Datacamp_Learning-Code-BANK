@@ -1181,11 +1181,20 @@ social_fin_tall = social_fin.melt(id_vars=['financial','company'])
 social_fin_tall = social_fin.melt(id_vars=['financial','company'], value_vars=['2018','2017')
 # MELTING WITH COLUMN NAMES
 social_fin_tall = social_fin.melt(id_vars=['financial','company'], value_vars=['2018','2017'], var_name='year', value_name='dollars')
-
-
-
-
-
+# STATISTICS IN PYTHON - MEAN- Average
+np.mean(df['column'])
+# MEDIAN- BEST USED WHEN DATA IS SKEWED
+np.median(df['column'])
+# MODE
+import statistics
+statistics.mode(df['column'])
+# OR MODE - CATEGORICAL VALUES
+df['column'].value_counts()
+# Histogram of co2_emission for rice and show plot
+rice_consumption['co2_emission'].hist()
+plt.show()
+# Calculate mean and median of co2_emission with .agg()
+print(rice_consumption['co2_emission'].agg([np.mean, np.median]))
 
 
 
