@@ -38,6 +38,22 @@ from scipy.stats import iqr
 iqr = iqr(msleep['bodywt'])
 low_threshold= np.quantile(msleep['bodywt'], 0.25) - 1.5 * iqr
 upper_threshold= np.quantile(msleep['bodywt'], 0.75) + 1.5 * iqr
+msleep[(msleep['bodywt'] < low_threshold) | (msleep['bodywt'] > upper_threshold)]
+# summary statistics
+msleep['bodywt'].describe()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
