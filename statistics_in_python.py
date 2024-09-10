@@ -23,7 +23,7 @@ np.quantile(msleep['sleept_total'], [0, 0.25,0.5,0.75,1])
 plt.boxplot(msleep['sleep_total'])
 plt.show()      # bottom of box is 1st quartile, top is 3rd quartile 
                 # and, middle ine is 2nd quartile or median
-# QUANTILES USING NP.LINESPACE() - start at 0, stop at 1, split into 5 intervals
+# QUARTILES USING NP.LINESPACE() - start at 0, stop at 1, split into 5 intervals
 np.quantile(msleep['sleept_total'], np.linespace(0,1,5))
 # INTERQUARTILE RANGE (IQR) - DISTANCE BTW 25TH AND 75TH PERCENTILE, ALSO HEIGHT OF BOX IN BOXPLOT
 np.quantile(msleep['sleep_total'], 0.75) - np.quantile(msleep['sleep_total'], 0.25)
@@ -49,6 +49,12 @@ plt.show()
 # Create histogram of co2_emission for food_category 'eggs'
 food_consumption[food_consumption['food_category'] == 'eggs']['co2_emission'].hist()
 plt.show()
+# Calculate the total co2_emission per country by grouping by country and taking the sum of co2_emission
+emissions_by_country = food_consumption.groupby('country')['co2_emission'].sum()
+# Compute the first and third quartiles and IQR of emissions_by_country
+q1 = np.quantile(emissions_by_country, 0.25)
+q3 = np.quantile(emissions_by_country, 0.75)
+iqr = np.quantile(emissions_by_country, 0.75) - np.quantile(emissions_by_country, 0.25)
 
 
 
