@@ -55,10 +55,19 @@ emissions_by_country = food_consumption.groupby('country')['co2_emission'].sum()
 q1 = np.quantile(emissions_by_country, 0.25)
 q3 = np.quantile(emissions_by_country, 0.75)
 iqr = np.quantile(emissions_by_country, 0.75) - np.quantile(emissions_by_country, 0.25)
-
-
-
-
+# MEASURING CHANCE
+P(event) = no of ways event can happen / total no of possible outcomes
+p(heads) = 1 way to get heads in coin / 2 possible outcomes
+# Sampling from a DF - choose random row
+sales_counts.sample()
+# Setting a random seed- seed is a no python random no generator uses as starting point
+np.random.seed(10)
+sales_counts.sample()
+# sampling with/without replacement 5 values
+sales_counts.sample(5, replace= True)
+# Calculate the probability of selecting a deal for the different product types by dividing the counts by the total number of deals Amir worked on.
+counts = amir_deals['product'].value_counts()    # Count the deals for each product
+probs = counts/ amir_deals.shape[0]
 
 
 
