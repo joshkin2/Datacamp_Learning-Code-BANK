@@ -68,13 +68,26 @@ sales_counts.sample(5, replace= True)
 # Calculate the probability of selecting a deal for the different product types by dividing the counts by the total number of deals Amir worked on.
 counts = amir_deals['product'].value_counts()    # Count the deals for each product
 probs = counts/ amir_deals.shape[0]
-
-
-
-
-
-
-
+# lAW OF LARGE NUMBERS ::
+As sample size increases, sample mean will approach expected value.
+# Create probability distribution by Count the number of each group_size in restaurant_groups, then divide by-
+#-the number of rows in restaurant_groups to calculate the probability of randomly selecting a group of each size. 
+size_dist = restaurant_groups['group_size'].value_counts() / restaurant_groups.shape[0]
+# Rename the columns of size_dist to group_size and prob
+size_dist.columns = ['group_size', 'prob']
+# Calculate the expected value of the size_dist, which represents the expected-
+#-group size, by multiplying the group_size by the prob and taking the sum.
+expected_value = np.sum(size_dist['group_size']* size_dist['prob'])
+# Subset groups of size 4 or more
+groups_4_or_more = size_dist[size_dist['group_size'] >=4]
+# Sum the probabilities of groups_4_or_more
+prob_4_or_more = np.sum(groups_4_or_more['prob'])
+# discrete distributions
+probability distribution - # describes each possible outcome in a scenario
+expected value [ev] - # mean of a probability distribution
+ev = n * probability- for a dice= (1*1/6) + (2*1/6) + (3*1/6)... #and so on till (6*1/6).
+# sampling from discrete distributions
+roll_10 = die.sample(10, replace=True)
 
 
 
