@@ -88,8 +88,10 @@ expected value [ev] - # mean of a probability distribution
 ev = n * probability- for a dice= (1*1/6) + (2*1/6) + (3*1/6)... #and so on till (6*1/6).
 # sampling from discrete distributions
 roll_10 = die.sample(10, replace=True)
-
-
+# Continous distributions
+# continous uniform distribution - falt line to represent same probabiity along multiple possibilities
+# uniform distribution in Python
+from scipy.stats import uniform
 
 
 
