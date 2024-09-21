@@ -96,7 +96,7 @@ uniform.cdf(7,0,12)      # P (WAIT TIME <= 7)
 # Greater than probabilities
 from scipy.stats import uniform
 1 - uniform.cdf(7,0,12)      # P (WAIT TIME >= 7) = 1 - P (WAIT TIME<= 7)
-# P (4<= WAIT TIME <= 7) = P(WAIT<=7) - P (WAIT<=4)
+# P (4<= WAIT TIME <= 7) = P(WAIT<=7) - P (WAIT<=4)    between 7 and 4 mins
 from scipy.stats import uniform
 uniform.cdf(7,0,12) - uniform.cdf(4,0,12)
 # Generate rand no according to uniform distribution
