@@ -90,9 +90,21 @@ ev = n * probability- for a dice= (1*1/6) + (2*1/6) + (3*1/6)... #and so on till
 roll_10 = die.sample(10, replace=True)
 # Continous distributions
 # continous uniform distribution - falt line to represent same probabiity along multiple possibilities
-# uniform distribution in Python
+# uniform distribution in Python, 7 = probability we're looking for, 0 = lower limit on scale, 12= upper limit on scale
 from scipy.stats import uniform
-
+uniform.cdf(7,0,12)      # P (WAIT TIME <= 7)
+# Greater than probabilities
+from scipy.stats import uniform
+1 - uniform.cdf(7,0,12)      # P (WAIT TIME >= 7) = 1 - P (WAIT TIME<= 7)
+# P (4<= WAIT TIME <= 7) = P(WAIT<=7) - P (WAIT<=4)
+from scipy.stats import uniform
+uniform.cdf(7,0,12) - uniform.cdf(4,0,12)
+# Generate rand no according to uniform distribution
+from scipy.stats import uniform
+uniform.rvs(0,5, size=10)         # 0 - min value, 5 - max value, 10 - no of rand values
+# eg of distribution 
+1. #discrete uniform - ticket no of reffle winner, with limited no of ticket. or outcome of rolling 4-sided die.
+2. # continuous - wait time for geyser to erupt which is exactly every 10 mins or time of day a baby will be born.
 
 
 
