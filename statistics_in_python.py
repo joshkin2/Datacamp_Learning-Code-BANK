@@ -105,6 +105,10 @@ uniform.rvs(0,5, size=10)         # 0 - min value, 5 - max value, 10 - no of ran
 # eg of distribution 
 1. #discrete uniform - ticket no of reffle winner, with limited no of ticket. or outcome of rolling 4-sided die.
 2. # continuous - wait time for geyser to erupt which is exactly every 10 mins or time of day a baby will be born.
+# Simulating wait times
+np.random.seed(334) - # set random seed to 334
+from scipy.stats import uniform - # import uniform
+wait_times = uniform.rvs(0,30,size=1000) - # generate 100 wait times between 0 and 30mins
 
 
 
