@@ -105,10 +105,44 @@ uniform.rvs(0,5, size=10)         # 0 - min value, 5 - max value, 10 - no of ran
 # eg of distribution 
 1. #discrete uniform - ticket no of reffle winner, with limited no of ticket. or outcome of rolling 4-sided die.
 2. # continuous - wait time for geyser to erupt which is exactly every 10 mins or time of day a baby will be born.
-# Simulating wait times
+# Simulating wait times - mini project
 np.random.seed(334) - # set random seed to 334
 from scipy.stats import uniform - # import uniform
 wait_times = uniform.rvs(0,30,size=1000) - # generate 100 wait times between 0 and 30mins
+plt.hist(wait_times) - # hist of simulated times
+plt.show()
+# binomial distribution- prob distri of the no of success in a sequence of independent trials
+from scipy.stats import binom
+binom.rvs(1, 0.5, size=8) - # flip 1 coin with 50% chance 8 times
+# probability of getting 7 heads
+# binom.pmf( no heads, no trials, prob of heads)
+binom.pmf(7, 10, 0.5)
+# binom.cdf - prob of getting no of success <= first argument
+binom.cdf(7,10,0.5) - # P(heads <= 7)
+# probability of more than 7 heads
+1 - binom.cdf(7,10,0.5) - # P(heads > 7)
+# expected value = n * p
+10 * 0.5 = 5 # if trails are not independent then we can't use binomial distribution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
