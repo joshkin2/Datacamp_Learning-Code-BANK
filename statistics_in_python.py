@@ -86,6 +86,12 @@ prob_4_or_more = np.sum(groups_4_or_more['prob'])
 probability distribution - # describes each possible outcome in a scenario
 expected value [ev] - # mean of a probability distribution
 ev = n * probability- for a dice= (1*1/6) + (2*1/6) + (3*1/6)... #and so on till (6*1/6).
+# Expected value won with 30% win rate
+won_30pct = 3 * 0.3
+print(won_30pct)
+# Expected value won with 25% win rate
+won_25pct = 3 * 0.25
+print(won_25pct)
 # sampling from discrete distributions
 roll_10 = die.sample(10, replace=True)
 # Continous distributions
@@ -117,21 +123,33 @@ binom.rvs(1, 0.5, size=8) - # flip 1 coin with 50% chance 8 times
 # probability of getting 7 heads
 # binom.pmf( no heads, no trials, prob of heads)
 binom.pmf(7, 10, 0.5)
+# Probability of closing 3 out of 3 deals
+prob_3 = binom.pmf(3,3,0.3)
 # binom.cdf - prob of getting no of success <= first argument
 binom.cdf(7,10,0.5) - # P(heads <= 7)
+# Probability of closing <= 1 deal out of 3 deals
+prob_less_than_or_equal_1 = binom.cdf(1,3,0.3)
 # probability of more than 7 heads
 1 - binom.cdf(7,10,0.5) - # P(heads > 7)
+# Probability of closing > 1 deal out of 3 deals
+prob_greater_than_1 = 1 - binom.cdf(1,3,0.3)
 # expected value = n * p
 10 * 0.5 = 5 # if trails are not independent then we can't use binomial distribution
-
-
-
-
-
-
-
-
-
+# Normal Distribution
+# percent of women shorter than 154cm - height = 154, mean = 161, SD = 7
+from scipy.stats import norm
+norm.cdf(154, 161, 7)
+# percent of women taller than 154cm 
+from scipy.stats import norm
+1 - norm.cdf(154, 161, 7)
+# percent of women between 154 - 157 cm
+norm.cdf(157,161,7) - norm.cdf(154,161,7)
+# height 90% of women are shorter than
+norm.ppf(0.9,161,7)
+# height 90% of women are taller than
+norm.ppf((1-0.9), 161, 7)
+# generate random heights/ numbers
+norm.rvs(161,7, size=10)
 
 
 
