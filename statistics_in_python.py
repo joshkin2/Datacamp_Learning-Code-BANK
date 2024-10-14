@@ -153,7 +153,16 @@ norm.rvs(161,7, size=10)
 # Histogram of amount with 10 bins and show plot
 amir_deals['amount'].hist( bins= 10)
 plt.show()
-# Central limit theorem
+# Central limit theorem -sampling distribution of stats becomes closer to normal distribution as no of trials increases
+# Rollig dice 5X
+die = pd.Series([1,2,3,4,5,6])
+samp_5= die.sample(5, replace=True) # then print samp_5
+# get mean for rolling dice 5X 10 times with for loop
+sample_means = []
+for i in range(10):
+  samp_5 = die.sample(5, replace=True)
+  sample_means.append(np.mean(samp_5))
+print (sample_means)
 
 
 
