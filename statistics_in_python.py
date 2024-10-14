@@ -193,7 +193,10 @@ poisson.cdf(5,8)
 # sampling from poisson distribution
 from scipy.stats import poisson
 poisson.rvs(8,size=10)
-
+# Exponential distribution - porb of time btw poisson events (prop of <10mins btw restaurant arrivals
+#P( wait < 1min) = 
+from scipy.stats import expon
+expon.cdf(1, scale= 2) # scale= 1/⋋ = 1/0.5 = 2
 
 
 
