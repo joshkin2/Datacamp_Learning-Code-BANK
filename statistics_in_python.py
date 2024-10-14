@@ -163,13 +163,36 @@ for i in range(10):
   samp_5 = die.sample(5, replace=True)
   sample_means.append(np.mean(samp_5))
 print (sample_means)
-
-
-
-
-
-
-
+# Mean of means -  estimate the mean by taking several random samples of deals
+# Set seed to 321
+np.random.seed(321)
+sample_means = []
+# Loop 30 times to take 30 means
+for i in range(30):
+  # Take sample of size 20 from num_users col of all_deals with replacement
+  cur_sample = all_deals['num_users'].sample(20, replace=True)
+  # Take mean of cur_sample
+  cur_mean = np.mean(cur_sample)
+  # Append cur_mean to sample_means
+  sample_means.append(cur_mean)
+# Print mean of sample_means
+print(np.mean(sample_means))
+# Print mean of num_users in amir_deals - END
+print(np.mean(amir_deals['num_users']))
+# -poisson processes= events happen at certain rate but randonm- no of animals adopted from shelter weekly
+# Poisson distribution = prob of some no of events occurring over fixed period of time described by Lambda
+# Lambda(⋋) = avg no of events per time interval
+#prob of single value - if avg no of adop per wk is 8, what is P(#adoptions in wk=5)?
+from scipy.stats import poisson
+poisson.pmf(5,8)
+# prob of <= 5?
+from scipy.stats import poisson
+poisson.cdf(5,8)
+# prob of > 5?
+1 - poisson.cdf(5,8)
+# sampling from poisson distribution
+from scipy.stats import poisson
+poisson.rvs(8,size=10)
 
 
 
