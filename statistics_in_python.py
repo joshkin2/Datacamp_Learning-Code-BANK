@@ -203,9 +203,35 @@ expon.cdf(1, scale= 2) # scale= 1/⋋ = 1/0.5 = 2
 import seaborn as sns
 sns.scatterplot(x='sleep_total', y='sleep_rem', data=msleep)
 sns.scatterplot(x='sleep_total', y='sleep_rem', data=msleep, ci=None) #to add trendline
+# Create scatterplot of happiness_score vs life_exp with trendline
+sns.lmplot(x='life_exp', y='happiness_score', data=world_happiness, ci=None)
 plt.show()
 # Calculation correlation total
 msleep['sleep_total'].corr(msleep['sleep_rem'])
+#CORRELATION CAVEATS
+#NON-LINEAR RELATIONSHIPS CORRELATION
+# When data is highly skewed, we apply log transformation to make relationship more linear
+msleep['log_bodywt'] = np.log(msleep['bodywt'])
+sns.lmplot(x='log_bodywt', y='awake',data=msleep, ci=None)
+plt.show()
+# OTHER TRANSFORMATIONS
+# LOG TRANSFROMATION (log(x))
+# Square root transformation (sqrt(x))
+# Reciprocal transfromation (1/x)
+# Why use a transformation?
+# Certain stats methods rely on variables having a linear relationship
+# - corr coefficient
+# - Linear regression
+
+
+
+
+
+
+
+
+
+
 
 
 
