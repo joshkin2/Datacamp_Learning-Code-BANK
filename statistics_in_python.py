@@ -197,9 +197,15 @@ poisson.rvs(8,size=10)
 #P( wait < 1min) = 
 from scipy.stats import expon
 expon.cdf(1, scale= 2) # scale= 1/⋋ = 1/0.5 = 2
-
-
-
+# CORRELATION - Pearson product-moment correlation (r)
+# X = INDEPENDENT VARIABLE, Y = DEPENDENT V
+# Visualizing relationships
+import seaborn as sns
+sns.scatterplot(x='sleep_total', y='sleep_rem', data=msleep)
+sns.scatterplot(x='sleep_total', y='sleep_rem', data=msleep, ci=None) #to add trendline
+plt.show()
+# Calculation correlation total
+msleep['sleep_total'].corr(msleep['sleep_rem'])
 
 
 
