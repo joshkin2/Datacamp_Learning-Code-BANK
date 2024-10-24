@@ -16,7 +16,7 @@ X_new = np.array([[9,9],      # predicitng on unlabeled data
                   [9,9]])
 predictions = knn.predict(X_new)
 print('Predicitions: {}'.format(predictions))
-
+# MEASURING MODEL PERFORMANCE
 
 
 
