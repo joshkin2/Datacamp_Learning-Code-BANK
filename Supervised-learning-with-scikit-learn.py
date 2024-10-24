@@ -17,9 +17,31 @@ X_new = np.array([[9,9],      # predicitng on unlabeled data
 predictions = knn.predict(X_new)
 print('Predicitions: {}'.format(predictions))
 # MEASURING MODEL PERFORMANCE
-
-
-
+# accuracy = correct pred./ total observations
+# train/test split
+from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y test_size=0.3,
+                                                    random_state=21, stratify=y)
+knn = KNeighborsClassifier(n_neighbors=6)
+knn.fit(X_train, Y_train)
+print(knn.score(X_test,Y_test)   #check accuracy
+# MODEL COMPLEXITY AND OVER/UNDERFITTING
+train_accuracies= {}
+test_accuracies = {}
+neighbors= np.arrange(1,26)
+for neighbor in neighbors:
+  knn = KNeighborsClassifier(n_neighbors=neighbor)
+  knn.fit(X_train, Y_train)
+  train_accuracies[neighbor]= knn.score(X_train, Y_train)
+  test_accuracies[neighbor]= knn.score(X_test, Y_test)
+plt.figure(figsize=(8,6))    # plot results
+plt.title('KNN: Varying Number of Neighbors')
+plt.plot(neighbors, train_accuracies.values(), label='Training Accuracy')
+plt.plot(neighbors, test_accuracies.values(), label='Testing Accuracy')
+plt.legend()
+plt.xlabel('Number of Neighbors')
+plt.ylabel('Accuracy')
+plt.show()
 
 
 
