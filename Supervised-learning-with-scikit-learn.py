@@ -28,7 +28,7 @@ print(knn.score(X_test,Y_test)   #check accuracy
 # MODEL COMPLEXITY AND OVER/UNDERFITTING
 train_accuracies= {}
 test_accuracies = {}
-neighbors= np.arrange(1,26)
+neighbors= np.arange(1,26)
 for neighbor in neighbors:
   knn = KNeighborsClassifier(n_neighbors=neighbor)
   knn.fit(X_train, Y_train)
@@ -42,14 +42,29 @@ plt.legend()
 plt.xlabel('Number of Neighbors')
 plt.ylabel('Accuracy')
 plt.show()
-
-
-
-
-
-
-
-
+# REGRESSION
+# Creating feature and target arrays
+X = diabetes_df.drop('glucos', axis=1).values
+y = diabetes_df['glucose'].values
+# Makke predictions from a single feature - array must be 2D to be accepted by scikit-learn
+X_bmi = X[:,3]
+X_bmi = X_bmi.reshape(-1,1)   # convert shape)
+# plot glucose Vs BMI
+import matplotlib.pyplot as plt
+plt.scatter(X_bmi, y)
+plt.ylabel('Blood Glucose (mg/dl)')
+plt.xlabel('Body Mass Index')
+plt.show()
+# Fitting regression model'
+from sklearn.linear_model import LinearRegression
+reg = LinearRegression()
+reg.fit(X_bmi, y)
+predictions = reg.predict(X_bmi)
+plt.scatter(X_bmi, y)
+plt.plot(X_bmi, predictions)
+plt.ylabel('Blood Glucose (mg/dl)')
+plt.xlabel('Body Mass Index')
+plt.show()
 
 
 
