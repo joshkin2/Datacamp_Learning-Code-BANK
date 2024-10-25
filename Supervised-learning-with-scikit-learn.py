@@ -74,8 +74,11 @@ X_train, X_test, y_train, y_test= train_test_split(X,
 reg_all = LiinearRegression()
 reg_all.fit(X_train, y_train)
 y_pred = reg_all.predict(X_test)
-
-
+# Computing R-squared - default metric for L.Regression
+reg_all.score(X_test,y_test)
+# RMSE (ROOT MEAN SQUARED ERROR - CONVERT TO DOLLARS squared = True?
+from sklearn.metrics import mean_squared_error
+mean_squared_error(y_test, y_pred, squared=False)
 
 
 
