@@ -44,11 +44,11 @@ plt.ylabel('Accuracy')
 plt.show()
 # REGRESSION
 # Creating feature and target arrays
-X = diabetes_df.drop('glucos', axis=1).values
+X = diabetes_df.drop('glucose', axis=1).values  #or  X = sales_df['radio'].values
 y = diabetes_df['glucose'].values
 # Makke predictions from a single feature - array must be 2D to be accepted by scikit-learn
 X_bmi = X[:,3]
-X_bmi = X_bmi.reshape(-1,1)   # convert shape)
+X_bmi = X_bmi.reshape(-1,1)   # convert shape
 # plot glucose Vs BMI
 import matplotlib.pyplot as plt
 plt.scatter(X_bmi, y)
@@ -65,6 +65,15 @@ plt.plot(X_bmi, predictions)
 plt.ylabel('Blood Glucose (mg/dl)')
 plt.xlabel('Body Mass Index')
 plt.show()
+# Linear regression using all features
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+X_train, X_test, y_train, y_test= train_test_split(X,
+                                                   y, test_size=0.3,
+                                                   random_state=42)
+reg_all = LiinearRegression()
+reg_all.fit(X_train, y_train)
+y_pred = reg_all.predict(X_test)
 
 
 
