@@ -83,7 +83,7 @@ mean_squared_error(y_test, y_pred, squared=False)
 # Import mean_squared_error
 from sklearn.metrics import mean_squared_error
 # Compute R-squared
-r_squared = reg.score(X_test, y_test)
+r_squared = reg.score(X_test, y_test) # score = ridge.score(X_test,y_test)
 # Compute RMSE
 rmse = mean_squared_error(y_test, y_pred, squared=False)
 # Print the metrics
@@ -98,7 +98,7 @@ print(cv_results)
 print(np.quantile(cv_results,[0.025,0.975]))   # 95% confidence interval- upper and lower limits of interval
 # REGULARIZED REGRESSION - AVOIDS OVERFITTING
 # RIDGE REGRESSION
-from sklearn.Linear_model import Ridge
+from sklearn.linear_model import Ridge
 scores= []
 for alpha in [0.1,1.0,10.0,100.0,1000.0]:
   ridge= Ridge(alpha=alpha)
@@ -106,8 +106,8 @@ for alpha in [0.1,1.0,10.0,100.0,1000.0]:
   y_pred=ridge.predict(X_test)
   scores.append(ridge.score(X_test,y_test))
 print(scores)
-# LASSO REGRESSION
-from sklearn.Linear_model import Lasso
+# LASSO REGRESSION - for feature selection
+from sklearn.linear_model import Lasso
 scores = []
 for alpha in [0.01,1.0,10.0,20.0,50.0]:
   lasso = Lasso(alpha=alpha)
@@ -115,9 +115,17 @@ for alpha in [0.01,1.0,10.0,20.0,50.0]:
   lasso_pred= lasso.predict(X_test)
   scores.append(lass0.score(X_test, y_test))
 print(scores)
-
-
-
+# LASSO REGRESSION for feature selection
+from sklearn.linear_model import Lasso
+X = diabetes_df.drop('glucose', axis=1).values
+y = diabetes_df['glucose'].values
+names = diabetes_df.drop('glucose', axis=1).columns
+lasso= Lasso(alpha=0.1)
+lasso_coef= Lasso(alpha=0.1)
+lasso_coef= lasso.fit(X,y).coef_  #fit model to data and extract coefficients
+plt.bar(names, lasso_coef)    # plot coefficients for each feature
+plt.xticks(rotation=45)
+plt.show()
 
 
 
