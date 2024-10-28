@@ -126,10 +126,14 @@ lasso_coef= lasso.fit(X,y).coef_  #fit model to data and extract coefficients
 plt.bar(names, lasso_coef)    # plot coefficients for each feature
 plt.xticks(rotation=45)
 plt.show()
-
-
-
-
+# Confusion matrix in scikit-learn
+from sklearn.metrics import classification_report, confusion_matrix
+knn= KNeighborsClassifier(n_neighbors=7)
+X_train, X_test, y_train, y_test= train_test_split(X, y, test_size=0.4, random_state=42)
+knn.fit(X_train, y_train)
+y_pred=knn.predict(X_test)
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))   # gives a classification report on metrics
 
 
 
