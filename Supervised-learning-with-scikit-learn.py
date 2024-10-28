@@ -134,10 +134,23 @@ knn.fit(X_train, y_train)
 y_pred=knn.predict(X_test)
 print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))   # gives a classification report on metrics
-
-
-
-
+# LOGISTIC REGRESSION
+from sklearn.linear_model import LogisticRegression
+logreg= LogisticRegression()
+X_train, X_test, y_train, y_test= train_test_split(X, y, test_size= 0.3, random_state=42)
+logreg.fit(X_train, y_train)
+y_pred= logreg.predict(X_test)
+y_pred_probs = logreg.predict_proba(X_test)[:,1]  #predicting probabilities
+print(y_pred_probs[0])
+# PLOTTING ROC curve
+from sklearn.metrics import roc_curve
+fpr, tpr, thresholds= roc_curve(y_test, y_pred_probs)
+plt.plot([0,1],[0,1], 'k--')
+plt.plot(fpr, tpr)
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+pt.title('Logistic Regression ROC Curve')
+plt.show()
 
 
 
