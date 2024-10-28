@@ -134,7 +134,7 @@ knn.fit(X_train, y_train)
 y_pred=knn.predict(X_test)
 print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))   # gives a classification report on metrics
-# LOGISTIC REGRESSION
+# LOGISTIC REGRESSION - this often perfroms better than KNN model across metrics
 from sklearn.linear_model import LogisticRegression
 logreg= LogisticRegression()
 X_train, X_test, y_train, y_test= train_test_split(X, y, test_size= 0.3, random_state=42)
@@ -142,7 +142,7 @@ logreg.fit(X_train, y_train)
 y_pred= logreg.predict(X_test)
 y_pred_probs = logreg.predict_proba(X_test)[:,1]  #predicting probabilities
 print(y_pred_probs[0])
-# PLOTTING ROC curve
+# PLOTTING ROC curve - model performs better when ROC curve is above dotted line
 from sklearn.metrics import roc_curve
 fpr, tpr, thresholds= roc_curve(y_test, y_pred_probs)
 plt.plot([0,1],[0,1], 'k--')
@@ -151,6 +151,63 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 pt.title('Logistic Regression ROC Curve')
 plt.show()
+# ROC AUC - Area Under ROC Curve 
+from sklearn.metrics import roc_auc_score
+print(roc_auc_score(y_test, y_pred_probs))
+# HYPERPARAMETER TUNING - PARAMETERS SPECIFIED BEFORE FITTING THE MODEL(ALPHS OR N_NEIGHBORS)
+# GRIDSEARCHCV IN SCIKIT-LEARN
+from sklearn.model_selection import GridSearchCV
+kf= KFold(n_splits=5, shuffle= True, random_state=42)
+param_grid= {'alpha': np.arrange(0.0001,1,10),'solver':['sag','lsqr']}
+ridge= Ridge()
+ridge_cv= GridSearchCV(ridge, param_grid, cv=kf)
+ridge_cv.fit(X_train, y_train)
+print(ridge_cv.best_params_, ridge_cv.best_score_)
+# RandomizedSearchCV
+from sklearn.model_selection import RandomizedSearchCV
+kf= KFold(n_splits=5, shuffle= True, random_state=42)
+param_grid= {'alpha': np.arrange(0.0001,1,10),'solver':['sag','lsqr']}
+ridge= Ridge()
+ridge_cv= RandomizedSearchCV(ridge, param_grid, cv=kf, n_iter=2)
+ridge_cv.fit(X_train, y_train)
+print(ridge_cv.best_params_, ridge_cv.best_score_)
+test_score= ridge_cv.score(X_test, y_test)  # Evaluate on test set
+print(test_score)
+# Create the parameter space
+params = {"penalty": ["l1", "l2"],
+         "tol": np.linspace(0.0001, 1.0, 50),
+         "C": np.linspace(0.1, 1.0, 50),
+         "class_weight": ["balanced", {0:0.8, 1:0.2}]}
+logreg_cv = RandomizedSearchCV(logreg, params, cv=kf)  # Instantiate the RandomizedSearchCV object
+logreg_cv.fit(X_train, y_train)    # Fit the data to the model
+# Print the tuned parameters and score
+print("Tuned Logistic Regression Parameters: {}".format(logreg_cv.best_params_))
+print("Tuned Logistic Regression Best Accuracy Score: {}".format(logreg_cv.best_score_))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
