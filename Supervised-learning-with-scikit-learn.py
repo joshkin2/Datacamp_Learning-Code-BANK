@@ -183,6 +183,10 @@ logreg_cv.fit(X_train, y_train)    # Fit the data to the model
 # Print the tuned parameters and score
 print("Tuned Logistic Regression Parameters: {}".format(logreg_cv.best_params_))
 print("Tuned Logistic Regression Best Accuracy Score: {}".format(logreg_cv.best_score_))
+# PREPROCESSING DATA- SCIKIT-LEARN ONLY ACCEPTS NUMERIC VALUES
+# TO CRETA DUMMY VARIABLES
+OneHotEncoder()  # SCIKIT-LEARN
+get_dummies()    # PANDAS
 
 
 
