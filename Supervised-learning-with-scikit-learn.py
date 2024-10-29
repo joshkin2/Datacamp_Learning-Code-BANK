@@ -187,20 +187,57 @@ print("Tuned Logistic Regression Best Accuracy Score: {}".format(logreg_cv.best_
 # TO CRETA DUMMY VARIABLES
 OneHotEncoder()  # SCIKIT-LEARN
 get_dummies()    # PANDAS
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# ENCODING DUMMY VARIABLES
+import pandas as pd
+music_df= pd.read_csv('music.csv')
+music_dummies= pd.get_dummies(music_df['genre'], drop_first=True) #genre being the categorical column
+# add binary features back to original DF
+music_dummies= pd.concat([music_df,music_dummies], axis=1)
+music_dummies= music_dummies.drop('genre',axis=1) #remove original genre column
+music_dummies= pd.get_dummies(music_df, drop_first=True) #FOR DF with 1 categorical feature
+# Linear regression with dummy variables
+from sklearn.model_selection import cross_val_score, KFold
+from sklearn.linear_model import LinearRegression
+X= music_dummies.drop('popularity',axis=1).values #contains all features in music_dummies
+y= music_dummies['popularity'].values  #contains popularity column
+X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2,random_state=42)
+kf= KFold(n_splits=5,shuffle=True, random_state=42)
+linreg=LinearRegression()
+linreg_cv= cross_val_score(linreg, X_train, y_train, cv=kf,scoring='neg_mean_squared_error')
+print(np.sqrt(-linreg_cv)  #training RMSE
+print("Average RMSE: {}".format(np.mean(rmse)))
+print("Standard Deviation of the target array: {}".format(np.std(y)))
+# HANDLING MISSING DATA
+print(music_df.isna().sum().sort_values()) # to show sum of missing feature values
+# DROPPING MISSING DATA- USED WHEN MISSING DATA IS LESS THAN 5% OF ALL DATA
+music_df= music_df.dropna(subset=['genre','tempo','loudness']) # Columns with <5% missing values
+#IMPUTING VALUES - replace missing data with educated guesses; using mean, median, e.t.c.
+#data must be plit first to avoid data leakage
+from sklearn.impute import SimpleImputer
+X_cat= music_df['genre'].values.reshape(-1,1)
+X_num= music_df.drop(['genre','popularity'],axis=1).values
+y= music_df['popularity'].values
+X_train_cat, X_test_cat, y_train, y_test= train_test_split(X_cat,y, test_size=0.2,random_state=12)                                                           
+X_train_num, X_test_num, y_train, y_test= train_test_split(X_num, y, test_size=0.2,random_state=12)                                                   
+imp_cat= SimpleImputer(strategy='most_frequent')
+X_train_cat= imp_cat.fit_transfrom(X_train_cat)
+X_test_cat= imp_cat.transform(X_test_cat)
+imp_num= SimpleImputer()   # imputers are knwn as transformers
+X_train_num= imp_num.fit_transfrom(X_train_num)
+X_test_num= imp_num.transfrom(X_test_num)
+X_train= np.append(X_train_num,X_train_cat, axis=1)
+X_test= np.append(X_test_num, X_test_cat, axis=1)
+#IMPUTING WITHIN A PIPELINE
+from sklearn.pipeline import Pipeline
+music_df= music_df.dropna(subset=['genre','liveness','tempo'])
+music_df['genre']= np.where(music_df['genre']== 'Rock',1,0)
+X = music_df.drop('genre',axis=1).values
+y= music_df['genre'].values
+steps= [('imputation', SimpleImputer()),('logistic_regression',LogisticRegression())]
+pipeline= Pipeline(steps)
+X-train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.3,random_state=42)
+pipeline.fit(X_train,y_train)
+pipeline.score(X_test, y_test)
 
 
 
