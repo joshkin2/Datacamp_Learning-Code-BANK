@@ -238,7 +238,8 @@ pipeline= Pipeline(steps)
 X-train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.3,random_state=42)
 pipeline.fit(X_train,y_train)
 pipeline.score(X_test, y_test)
-
+# Build steps for the pipeline
+steps = [("imputer", imputer), ("knn", knn)]
 
 
 
