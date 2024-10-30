@@ -240,6 +240,107 @@ pipeline.fit(X_train,y_train)
 pipeline.score(X_test, y_test)
 # Build steps for the pipeline
 steps = [("imputer", imputer), ("knn", knn)]
+# CENTERING AND SCALING DATA - NORMALIZING AND STANDARDIZING DATA
+#STANDARDIZATION= subtract mean and divide by variance
+#NORMALIZATION= subtract the minimum and divide by the range
+#SCALING
+from sklearn.preprocessing import StandardScaler
+X= music_df.drop('genre',axis=1).values
+y= music_df['genre'].values
+X_train,X_test,y_train,y_test= train_test_split(X,y,
+                                                test_size=0.2,random_state=42)
+scaler= StandardScaler()
+X_train_scaled= scaler.fit_transform(X_train)
+X_test_scaled= scaler.transfrom(X_test)
+print(np.mean(X), np.std(X))
+print(np.mean(X_train_scaled),np.std(X_train_scaled))
+# SCALING IN A PIPELINE
+steps= [('scaler', StandardScaler()), ('knn',KNeighborsClassifier(n_neighbors=6))]
+pipeline= Pipeline(steps)
+X_train,X_test,y_train,y_test= train_test_split(X,y, test_size=0.2,random_state=21)
+knn_scaled= pipeline.fit(X_train,y_train)
+y_pred= knn_scaled.predict(X_test)
+print(knn_scaled.score(X_test,y_test))
+# COMPARING PERFORMANCE USING UNSCALED DATA
+X_train,X_test,y_train,y_test= train_test_split(X,y, test_size=0.2,random_state=21)
+knn_unscaled= KNeighborsClassifier(n_neighbors=6).fit(X_train,y_train)
+print(knn_unscaled.score(X_test,y_test))
+#CROSS VALIDATION AND SCALING IN A PIPELINE
+from sklearn.model_selection import GridSearchCV
+steps= [('scaler', StandardScaler()), ('knn',KNeighborsClassifier())]
+pipeline= Pipeline(steps)
+parameters= {'knn__n_neighbors': np.arange(1,50)}  #specify hyperparameter space by creating DICTIONARY
+# Create the parameter space
+parameters = {"logreg__C": np.linspace(0.001, 1.0, 20)}
+X_train,X_test,y_train,y_test= train_test_split(X,y, test_size=0.2,random_state=21)
+cv= GridSearchCV(pipeline,param_grid= parameters)
+cv.fit(X_train,y_train)
+y_pred= cv.predict(X_test)
+print(cv.best_score_)  #check model performance
+print(cv.best_params_) # print best parameters, optimal model has result neighbors
+# EVALUATING MULTIPLE MODELS
+# REGRESSION MODEL PERFORMANCE EVALUATED WITH RMSE & R_SQUARED
+#CLASSIFICATION MODEL WITH ACCURACY, CONFUSION-MATRIX,PRECISION-RECALL-F1-SCORE, ROC AUC
+# MODELS AFFECTED BY SCALING:KNN, LINREG(+RIDGE,LASSO), LOGREG, ARTIFICIAL NEURAL NETWORK
+#EVALUATING CLASSIFICATION MODELS - whic model is better?
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import cross_val_score, KFold, train_test_split
+from sklearn.neighbors import KNeighboursClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+X= music.drop('genre', axis= 1).values
+y= music['genre'].values
+X_train, X_test,y_train,y_test= train_test_split(X,y,random_state=42)
+scaler= StandardScaler()
+X_train_scaled= scaler.fit_transform(X_train)
+X_test_scaled= scaler.transform(X_test)
+models= {'LogReg':LogisticRegression(),
+         'KNN':KNeighborsClassifier(),'Decision Tree':DecisionTreeClassifier()}
+results= []
+for model in models.values():
+  kf= KFold(n_splits=6,random_state=42,shuffle=True)
+  cv_results= cross_val_score(model,X_train_sclaed,y_train,cv=kf)
+  results.append(cv_results)
+  plt.boxplot(results,labels=models.keys())
+  plt.show()
+#Test set performance
+for name,model in models.items():
+  model.fit(X_train_scaled,y_train)
+  test_score= model.score(X_test_scaled,y_test)
+  print('{} Test Set Accuracy: {}'.format(name,test_score))
+#Test performance using RMSE  
+# Import mean_squared_error
+from sklearn.metrics import mean_squared_error
+for name, model in models.items():
+  # Fit the model to the training data
+  model.fit(X_train_scaled,y_train)
+  # Make predictions on the test set
+  y_pred = model.predict(X_test_scaled)
+  # Calculate the test_rmse
+  test_rmse = mean_squared_error(y_test, y_pred, squared=False)
+  print("{} Test Set RMSE: {}".format(name, test_rmse))
+#Pipeline for predicting song popularity
+# Create steps
+steps = [("imp_mean", SimpleImputer()), 
+         ("scaler", StandardScaler()), 
+         ("logreg", LogisticRegression())]
+# Set up pipeline
+pipeline = Pipeline(steps)
+params = {"logreg__solver": ["newton-cg", "saga", "lbfgs"],
+         "logreg__C": np.linspace(0.001, 1.0, 10)}
+# Create the GridSearchCV object
+tuning = GridSearchCV(pipeline, param_grid=params)
+tuning.fit(X_train, y_train)
+y_pred = tuning.predict(X_test)
+# Compute and print performance
+print("Tuned Logistic Regression Parameters: {}, Accuracy: {}".format(tuning.best_params_, t
+                                                                      uning.score(X_test,y_test)))
+
+
+
+
+
 
 
 
