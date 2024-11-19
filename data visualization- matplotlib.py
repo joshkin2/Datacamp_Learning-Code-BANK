@@ -84,11 +84,63 @@ def plot_timeseries(axes,x,y, color, xlabel,ylabel):
   axes.tick_params('y', colors=color)
 # using function above
 fig, ax= plt.subplots()
-plot_timeseries(ax,climate_change.index, climate_change['co2']),'b', 'Time','CO2 (ppm)')
+plot_timeseries(ax,climate_change.index, climate_change['co2'],'b', 'Time','CO2 (ppm)')
 ax2= ax.twinx()
 plot_timeseries(ax2, climate_change.index, climate_change['relative_temp'],'r', 'Time',
                 'Relative temperature (Celsius)')
 plt.show()
+
+# ANNOTATING TIME-SERIES DATA
+fig, ax= plt.subplots()
+plot_timeseries(ax,climate_change.index, climate_change['co2'],'b', 'Time','CO2 (ppm)')
+ax2= ax.twinx()
+plot_timeseries(ax2, climate_change.index, climate_change['relative_temp'],'r', 'Time',
+                'Relative temperature (Celsius)')
+ax2.annotate('>1 degree', xy=(pd.Timestamp('2015-10-06'), 1))  #annotation
+plt.show()
+# POSITIONING ANNOTATION TEXT
+ax2.annotate('>1 degree', 
+             xy=(pd.Timestamp("2015-10-06"), 1),
+            xytext=(pd.Timestamp("2008-10-06"), -0.2))
+# ADDING ARROWS TO ANNOTATION
+ax2.annotate('>1 degree', 
+             xy=(pd.Timestamp("2015-10-06"), 1),
+            xytext=(pd.Timestamp("2008-10-06"), -0.2),
+            arrowprops={})
+# CUSTOMIZING ARROW PROPERTIES
+ax2.annotate('>1 degree', 
+             xy=(pd.Timestamp("2015-10-06"), 1),    # xy IS POINTING AT xytext
+            xytext=(pd.Timestamp("2008-10-06"), -0.2),
+            arrowprops={'arrowstyle':'->', 'color':'gray'})
+
+# QUANTITATIVE COMPARISONS: BAR-CHARTS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
