@@ -127,18 +127,37 @@ ax.set_ylabel('Number of medals')
 plt.show()
 # Stacked barchart for 3 medals- silver, gold, and bronze
 fig, ax=plt.subplots()
-ax.bar(medals.index, medals['Gold'])
-ax.bar(medals.index, medals['Silver'], bottom=medals['Gold'])
-ax.bar(medals.index, medals['Bronze'], bottom=medals['Gold']+ medals['Silver'])
+ax.bar(medals.index, medals['Gold'], label='Gold')
+ax.bar(medals.index, medals['Silver'], bottom=medals['Gold'], label='Silver')
+ax.bar(medals.index, medals['Bronze'], bottom=medals['Gold']+ medals['Silver'],label='Bronze)
 ax.set_xticklabels(medals.index,rotation=90)   # rotate tick labels
 ax.set_ylabel('Number of medals')
 plt.show()
 # adding labels (legend)
 ax.legend()   #added before showing plot
-
-
-
-
+label= "name of label preferred"  # to edit name of each label
+# Histograms - shows entire distribution of values
+fig, ax=plt.subplots()
+ax.hist(mens_rowing['Height'],label='Rowing', bins=5)
+ax.hist(mens_gymnastics['Height'], label='Gymnastics',bins=5)
+ax.set_xlabel('Height (cm)')
+ax.set_ylabel('# of observations')
+ax.legend()
+plt.show()
+#setting bin boundaries
+ax.hist(mens_rowing['Height'],label='Rowing', bins=[150,160.170,180,190,200,210])
+ax.hist(mens_gymnastics['Height'], label='Gymnastics',bins=[150,160.170,180,190,200,210])
+ax.set_xlabel('Height (cm)')
+ax.set_ylabel('# of observations')
+ax.legend()
+plt.show()
+# setting transparency
+ax.hist(mens_rowing['Height'],label='Rowing', bins=5,histtype='step')
+ax.hist(mens_gymnastics['Height'], label='Gymnastics',bins=5, histtype='step')
+ax.set_xlabel('Height (cm)')
+ax.set_ylabel('# of observations')
+ax.legend()
+plt.show()
 
 
 
