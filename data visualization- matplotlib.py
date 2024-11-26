@@ -112,13 +112,29 @@ ax2.annotate('>1 degree',
              xy=(pd.Timestamp("2015-10-06"), 1),    # xy IS POINTING AT xytext
             xytext=(pd.Timestamp("2008-10-06"), -0.2),
             arrowprops={'arrowstyle':'->', 'color':'gray'})
-
 # QUANTITATIVE COMPARISONS: BAR-CHARTS
-
-
-
-
-
+medals= pd.read_csv('medals_by_country_2016.csv', index_col=0)
+fig, ax=plt.subplots()
+ax.bar(medals.index, medals['Gold'])
+ax.set_xticklabels(medals.index,rotation=90)   # rotate tick labels
+ax.set_ylabel('Number of medals')
+plt.show()
+# Stacked barchart for 2 medals- silver and gold
+fig, ax=plt.subplots()
+ax.bar(medals.index, medals['Silver'], bottom=medals['Gold'])
+ax.set_xticklabels(medals.index,rotation=90)   # rotate tick labels
+ax.set_ylabel('Number of medals')
+plt.show()
+# Stacked barchart for 3 medals- silver, gold, and bronze
+fig, ax=plt.subplots()
+ax.bar(medals.index, medals['Gold'])
+ax.bar(medals.index, medals['Silver'], bottom=medals['Gold'])
+ax.bar(medals.index, medals['Bronze'], bottom=medals['Gold']+ medals['Silver'])
+ax.set_xticklabels(medals.index,rotation=90)   # rotate tick labels
+ax.set_ylabel('Number of medals')
+plt.show()
+# adding labels (legend)
+ax.legend()   #added before showing plot
 
 
 
