@@ -176,7 +176,15 @@ ax.errorbar(austin_we['MONTH'], austin_we['MLY-TAVG-NORMAL'],
            yerr=austin_we['MLY-TAVG-STDDEV'])
 ax.set_ylabel('Temperature (Fahrenheit)')
 plt.show()
-
+# ADDING BOXPLOTS
+fig,ax=plt.subplots()
+ax.boxplot([mens_rowing['Height'],mens_gymnastics['Height']])
+ax.set_xticklabels(['Rowing', 'Gymnastics'])
+ax.set_ylabel('Height (cm)')
+plt.show()
+# SCATTER PLOTS - BIVARIATE COMPARISON
+fig, ax= plt.subplots()
+ax.scatter
 
 
 
