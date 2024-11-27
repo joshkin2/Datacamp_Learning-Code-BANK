@@ -158,9 +158,24 @@ ax.set_xlabel('Height (cm)')
 ax.set_ylabel('# of observations')
 ax.legend()
 plt.show()
-
-
-
+# STATISTICAL PLOTTING
+# Adding error bars to bar charts- summary of distribution of data in 1 no, like SD of values
+fig,ax=plt.subplots()
+ax.bar('Rowing',mens_rowing['Height'].mean(),
+       yerr=mens_rowing['Height].std())
+ax.bar('Gymnastics',mens_gymnastics['Height'].mean(),
+       yerr=mens_gymnastics['Height].std())
+ax.set_ylabel('Height (cm)')
+plt.show()
+# Adding error bars to line plot
+fig, ax= plt.subplots()
+# adding data to axes
+ax.errorbar(seattle_we['MONTH'], seattle_we['MLY-TAVG-NORMAL'],
+           yerr=seattle_we['MLY-TAVG-STDDEV'])
+ax.errorbar(austin_we['MONTH'], austin_we['MLY-TAVG-NORMAL'],
+           yerr=austin_we['MLY-TAVG-STDDEV'])
+ax.set_ylabel('Temperature (Fahrenheit)')
+plt.show()
 
 
 
