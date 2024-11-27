@@ -211,17 +211,32 @@ plt.show()
 plt.style.use("ggplot")
 plt.style.use("bmh") # add this line of code to line plot
 plt.style.use("default") # to change back to default- visit matplotlib.org for more styles
-plt.style.use("seaborn-colorblind"        
+plt.style.use("seaborn-colorblind")        
+# Gudielines for choosing plot style
+#-dark bg is less visible, - use colorbing if color is important: seaborn-colorblind or tableau-colorblind10
+# for printing avoid colord bg, - if printed in BW use grayscale style
 
-
-
-
-
-
-
-
-
-
+# SAVING FIG TO FILE
+fig.savefig("gold_medals.png") # add this line to your plot code - has best image quality
+fig.savefig("gold_medals.jpg") # - best for website
+fig.savefig("gold_medals.jpg", quality=50) # for compression(0-100 range)
+fig.savefig("gold_medals.png", dpi=300) # for resolution
+# editing size
+fig.set_size_inches([5,3]) #determines aspect ratio
+        
+# AUTOMATING FIGURES FROM DATA - visualizations that adapt to data provided
+# Get unique values of a column
+sports_column = summer_2016_medals['Sport']  # Extract the "Sport" column
+sports= sport_column['sport'].unique()  # Find the unique values of the "Sport" column
+# barchart of height for all sports
+fig, ax= plt.subplots()
+for sport in sports:  # Loop over the different sports branches
+        sport_df=summer_2016_medals[summer_2016_medals['Sport']== sport] # Extract the rows only for this sport
+        ax.bar(sport, sport_df['Height'].mean(), # Add a barchart for the "Height" mean with std y error bar
+               yerr=sport_df['Height'].std())
+ax.set_ylabel('Height (cm)')
+ax.set_xticklabels(sports, rotation=90)
+plt.show()
 
 
 
