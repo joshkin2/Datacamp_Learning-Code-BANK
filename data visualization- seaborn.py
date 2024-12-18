@@ -11,3 +11,52 @@ import matplotlib.pyplot as plt
 gender= ['Female', 'Female','Male','Male','Female']
 sns.countplot(x=gender)
 plt.show()
+# WORKING WITH DF's
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+df= pd.read_csv(masculinity)
+df.head()
+sns.countplot(x='how_masculine',data=df)
+plt.show()
+#NOTE: seaborn will not work well with untidy data
+# ADDING 3RD VARIABLE WITH HUE
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+tips= sns.load_dataset('tips')
+tips.head()
+sns.scatterplot(x='total_bill',y='tip',data=tips,hue='smoker',hue_order=['Yes','No'])
+plt.show()
+# SPECIFYING HUE COLORS
+hue_colors={'Yes':'black','No':'red'}
+sns.scatterplot(x='total_bill',y='tip',data=tips,hue='smoker',hue_order=['Yes','No'])
+plt.show()
+# Create a count plot of school with location subgroups
+sns.countplot(x="school",data=student_data,hue="location",palette=palette_colors)
+# RELATIONAL PLOTS= RELATIONSHIP BTW 2 QUANTITATIVE VARIABLES
+# USING RELPLOT()
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.relplot(x='total_bill',y='tip',data=tips,kind='scatter') #to arrange vertically add= row='smoker'
+# to use both add= col='smoker',row='time'.
+plt.show()
+# wrapping columns, add= col_wrap=2
+#ordering columns, add= col_order=['Thur','Fri','Sat','Sun']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
