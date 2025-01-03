@@ -27,6 +27,7 @@ import matplotlib.pyplot as plt
 tips= sns.load_dataset('tips')
 tips.head()
 sns.scatterplot(x='total_bill',y='tip',data=tips,hue='smoker',hue_order=['Yes','No'])
+sns.relplot(x="G1", y="G3",data=student_data,kind="scatter", col="schoolsup",col_order=["yes", "no"])
 plt.show()
 # SPECIFYING HUE COLORS
 hue_colors={'Yes':'black','No':'red'}
