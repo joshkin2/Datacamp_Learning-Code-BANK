@@ -172,7 +172,13 @@ g.fig.suptitle('New Title',y=1.03)
 #ADDING TITLE TO AXESSUBPLOT
 g= sns.boxplot(x='region',y='birthrate',data=gdp_data)
 g.set_title('New Title',y=1.03)
-
+# titles for subplots
+g.set_titles('This is {col_name}')
+# add axis labels
+g.set(xlabel='New X label',ylabel='New Y label')
+plt.show()
+# rotating x-axis tick labels
+plt.xticks(rotation=90)
 
 
 
