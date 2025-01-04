@@ -1,3 +1,4 @@
+#CATEGORICAL PLOTS= COUNT,BAR,BOX,POINT
 # PLOTTING A SCATTER PLOT
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -124,15 +125,53 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 g= sns.catplot(x='time',y='total_bill',data=tips,kind='box',order=['Dinner','Lunch'])
 plt.show()
+# Omitting Outliers
+g= sns.catplot(x='time',y='total_bill',data=tips,kind='box',sym='')
+plt.show()
+# changing whiskers
+g= sns.catplot(x='time',y='total_bill',data=tips,kind='box',whis=[0,100]) #min & max values 
+g= sns.catplot(x='time',y='total_bill',data=tips,kind='box',whis=2.0) #extend to 2.0 
+g= sns.catplot(x='time',y='total_bill',data=tips,kind='box',whis=[5,95]) #show 5th and 95th percentiles
+plt.show()
 
+# POINT PLOTS - shows mean of quantitative variable, vertical line= 95% confidence intervals
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.catplot(x='age',y='masculine',data=masculine_data,kind='point')
+plt.show()
+# disconnecting points
+sns.catplot(x='age',y='masculine',data=masculine_data,kind='point',join=False)
+plt.show()
+# displaying median
+import seaborn as sns
+import matplotlib.pyplot as plt
+from numpy import median
+sns.catplot(x='age',y='masculine',data=masculine_data,kind='point',estimator=median) #median is robust to outliers
+plt.show()
+# customizing CI
+sns.catplot(x='age',y='masculine',data=masculine_data,kind='point',capsize=0.2)
+plt.show()
 
+# CHANGING PLOT STYLE - color of baackground 
+sns.set_style('variable of style preferred')
+# CHANGING PALETTE - color of main elements of plot
+#diverging, sequential and custom pallettes
+sns.set_palette()
+# CHANGING SCALE- scale of plot elements and labels
+sns.set_context()
 
+# seaborn plot creates 2 objects type: FacetGrid and AxesSubplot
+type(g) #display type of scatter plot
+# ADDING TITLE to FacetGrid
+g= sns.catplot(x='region',y='birthrate',data=gdp_data,kind='box')
+g.fig.suptitle('New Title')
+plt.show()
+# adjust height of title facetgrid- default is 1
+g.fig.suptitle('New Title',y=1.03)
 
-
-
-
-
-
+#ADDING TITLE TO AXESSUBPLOT
+g= sns.boxplot(x='region',y='birthrate',data=gdp_data)
+g.set_title('New Title',y=1.03)
 
 
 
