@@ -119,6 +119,11 @@ import matplotlib.pyplot as plt
 sns.catplot(x='total_bill',y='day',data=tips,kind='bar')
 plt.show()
 
+# BOX PLOT - comparison between groups
+import seaborn as sns
+import matplotlib.pyplot as plt
+g= sns.catplot(x='time',y='total_bill',data=tips,kind='box',order=['Dinner','Lunch'])
+plt.show()
 
 
 
