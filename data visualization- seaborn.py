@@ -1,4 +1,5 @@
-#CATEGORICAL PLOTS= COUNT,BAR,BOX,POINT
+#CATEGORICAL PLOTS= COUNT,BAR,BOX,POINT- distribution of quantitative var within categories
+# RELATIONAL PLOTS= scatter and line - relationship btw 2 quantitative variables
 # PLOTTING A SCATTER PLOT
 import seaborn as sns
 import matplotlib.pyplot as plt
