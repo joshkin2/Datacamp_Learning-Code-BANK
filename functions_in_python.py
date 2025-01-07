@@ -218,6 +218,24 @@ def echo_shout(word):
 # Call function echo_shout() with argument 'hello'
 echo_shout("hello")
 
+# FLEXIBLE ARGUMENTS *ARGS
+def add_all(*args):
+  """sum all values in *args together"""
+  #Initialize sum
+sum_all=0
+# accumulate the sum
+for num in args:
+  sum_all += num
+return sum_all
+add_all(1,2) # will print out 3
+
+#**KWARGS
+def print_all(**kwargs):
+  """print out key-value pairs in **kwards"""
+  #print out key-value pairs
+for key, value in kwargs.items():
+  print(key+":"+value)
+print_all(name="duds",job="hero")
 
 
 
