@@ -12,6 +12,10 @@ plt.hist(x or y, bins=5)
 rice_consumption['co2_emission'].hist()
 plt.show()
 
+# Plot the price diff of the close of jpm, wells and bac only 2
+price_diffs.plot(y=['close_jpm', 'close_wells', 'close_bac'])
+plt.show()
+
 # clean up plot
 plt.clf()
 # to add grid to plot
