@@ -12,63 +12,23 @@ from sklearn.metrics import accuracy_score, confusion matrix
 (alpha = 0.8) #zero is transparent, one is not at all transparent
 
 
-# converting lists to dictionaries
-pop = [30.55, 2.77, 39.21] # list
-countries = ["afghan", "albania", "algeria"] # list
-world = {"afghan":30.55, "albania":2.77. "algreria":39.21} # dict
-# to find value of albania in dict use
-world["albania"]
-#To get position of a value in a list use
-new variable = variablethatcontainsvalueneeded.index("value you're looking for")
-# get the index of albania in list
-ind_albania = countries.index("albania")
-# to print out keys
-print(europe.keys())		
-# add more data to dict or update an info in dict
-world["sealand"] = int, float or str                           
-# check if a value is in a dict
-"sealand" in world
-# delete value from dict
-del(world["sealand"])
+
+	
+
 #chain square brackets to select elements
 europe['spain']['population']
-# Correct way to add a key-value pair to a dictionary
-data = {'capital': 'rome', 'population': 59.83}
-europe['italy'] = data
-print(europe)
-#turn dict into dataframe called cars
-cars = pd.DataFrame(my_dict)
-#specify row labels in a table
-brics.index = ["infos to add"]
-#extracting infos as pandas DF in whole columns in a DF
-brics[['column1', 'column2']]
-#use slicing to extract rows in DF
-brics[1:4] to extract info from the 2nd row to the 4th(n-1)
-#pinpoint and extract all data in a row as panda series and panda DF on a DF using loc
-brics.loc['RU'] or brics.loc[['RU']]
-#for multiple rows
-brics.loc[['RU', 'IN', 'CH']]
-# extract bool value of all data in a colunm as Series
-dr = brics['column number']
-#to do the above with one line of code
-sel = brics[brics['column no']]
-#extracting fro, beginning to end
-brics.loc[:, ['column1', 'column2']]
-#extract sub-DF
-cars.loc['IN', 'cars_per_cap']
-cars.iloc[3, 0]
-#or
-cars.loc[['IN', 'RU'], 'cars_per_cap']
-cars.iloc[[3, 4], 0]
-#or
-cars.loc[['IN', 'RU'], ['cars_per_cap', 'country']]
-cars.iloc[[3, 4], [0, 1]]
+
+
+
+
+
 # to compare values in NumPy
 np.logical_and(bmi > 21, bmi < 22)
 np.logical_or(bmi > 21, bmi < 22)
 np.logical_not(bmi > 21, bmi < 22)
 # to see the digits for the above instead, use
 bmi[np.logical_and(bmi > 21, bmi < 22)
+
 #if, elif, else (conditional statements)
 z = 4
 if z % 2 == 0 : #True
@@ -84,17 +44,9 @@ elif z % 3 == 0 :
     print('z is divisible by 3') #True( if the condition at the top is met, then this line of code won't be executed
 else :
     print('z is neither divisible by 2 not by 3')
-# filtering pandas DF
-brics["area"] > 8 #print bool of data in the column area that is larger than 8
-# save the above as is_huge, then index it in the main DF to create a subset DF which will contain only values from DF larger than 8
-brics[is_huge]
-# to get the above done in one line of code
-brics[brics['area'] > 8]
-# to compare values in a DF
-import numpy as np
-np.logical_and(brics['area'] > 8, brics['area'] < 10 #to get the bool values
-# or
-brics[np.logical_and(brics['area'] > 8, brics['area'] < 10)]
+
+
+               
 # using while loop
 error = 50.0
 while error > 1:
@@ -143,6 +95,7 @@ for i in range(0, 5):
     print("Before square ", i, 'is',  squares[i])
     squares[i] = 'white'
     print("After square ", i, 'is',  squares[i])
+    
 #display values of rating of an album playlist stored in PlayListRatings
 PlayListRatings = [10, 9.5, 10, 8, 7.5, 5, 10, 10]
 i = 0
@@ -161,6 +114,7 @@ while i<len(Animals):
         New.append(j)
     i=i+1
 print(New)
+
 #concatenation
 concantenated_string = string1 + string2
 result = "Hello" + "John"</td>    #example of concatenation
@@ -185,14 +139,8 @@ variable.remove(index no)
 variable.reverse()
 #sort elements in list in ascending or descending order
 variable.sort() or variable.sort(reverse = True)
-#delete key from a dict
-del dict_name[key]
-#to see all the keys in a dict
-dict.keys()
-#see all values in a dict
-dict.values()
-#extract keys in a dict as a list
-list(dict.keys())
+
+
 #convert list to set
 new_variable = set(variable)
 #extracting comonality between sets
@@ -201,6 +149,7 @@ new_set = set1 & set2
 set1.union(set2)
 #check if a set is a subset(is new_set a subset of set1?)
 new_set.issubset(set1)
+
 #to access index info of list elements using for loop
 areas = [11.25, 18.0, 20.0, 10.75, 9.50]
 for index, area in enumerate(areas):
@@ -215,6 +164,7 @@ house = [["hallway", 11.25],
          ["bathroom", 9.50]]
 for room in house:
     print("the " + room[0] + " is " + str(room[1]) + " sqm")
+    
 #print out elemenets in a dict using for loop(output may be unordered)
 world = {"ghana":20,
          "usa": 2.5.
@@ -248,6 +198,7 @@ print(brics)
 #most efficient way to do what is above
 brics["name_length"] = brics["country"].apply(len)
 print(brics)
+
 #random generators
 np.random.seed(123)
 np.random.rand()
@@ -264,6 +215,7 @@ else:
 print(np.random.rand())
 #simulate a dice(number will start from 1 and end at 7-1=6)
 print(np.random.randint(1,7)
+      
 #using distribution to calculate odds
 import numpy as np
 import matplotlib.pyplot as plt
@@ -277,6 +229,7 @@ for x in range(100) :
 final_tails.append(tails[-1])
 plt.hist(final_tails, bins = 10)
 plt.show()
+
 #proper way to set up random ops with for-if-else
 import numpy as np
 np.random.seed(123)
@@ -343,6 +296,7 @@ np_aw_t = np.transpose(np_aw)
 # Plot np_aw_t and show EG
 plt.plot(np_aw_t)
 plt.show()
+
 # EXAMPLE
 # Simulate random walk 500 times EG
 all_walks = []
@@ -372,6 +326,7 @@ plt.show()
 #calculate length of string and list
 string_length = len('hello, world')
 list_length = len([1,2,3,4,5])
+
 #to define functions use def
 def greet(name):
     print('Hello, ' + name)
@@ -387,6 +342,7 @@ def Printlist(the-list):
     for element in the_list:
         print(element)
 Printlist(['1',1,'the man','abc'])
+
 # Python Program to Count words in a String using Dictionary
 def freq(string, counted_word): 
 #step1: A list variable is declared and initialized to an empty list. EG
@@ -404,6 +360,7 @@ def freq(string, counted_word):
 #step6: Call function and pass string in it EG
 freq("Mary had a little lamb Little lamb, little lamb Mary had a little lamb. Its fleece was white as snow And everywhere that Mary went Mary went, Mary went \
 Everywhere that Mary went The lamb was sure to go", "counted_word")
+
 # Example of global variable
 myFavouriteBand = "AC/DC"
 def getBandRating(bandname):
@@ -424,6 +381,7 @@ def getBandRating(bandname):
 print("AC/DC's rating is: ", getBandRating("AC/DC"))
 print("Deep Purple's rating is: ", getBandRating("Deep Purple"))
 print("My favourite band is", myFavouriteBand)
+
 #Exception handling: types of errors. use try and except blocks to prevent program crash
 try:
     result= 10/ 0
@@ -456,6 +414,7 @@ def safe_divide(numerator, denominator):
 numerator = int(input('Enter numerator value: '))
 denominator = int(input('Enter denominator value: '))
 print(safe_divide(numerator,denominator))
+
 #creating a class
 class ClassName:
     class_attribute = value
@@ -535,6 +494,7 @@ vehicle1.display_properties()
 vehicle2 = Vehicle(180, 25)
 vehicle2.assign_seating_capacity(4)
 vehicle2.display_properties()
+
 #opening files- 'r' to read file only, 'w' to write
 with open('Example1.txt','r') as file1:
     file_stuff=file1.read()
@@ -591,6 +551,7 @@ with open(exReg,'r') as readFile:
     print(readFile.read())
 ```
 </details>
+
 #pandas: Loading Data
 df.loc['a', 'Artist']      #to access the name of the artist in row a, colum artist
 #save as CSV
@@ -603,22 +564,21 @@ print(s)
 print(df.iloc[2])
 #assessing 2nd row by label
 print(df.loc[1])
-#extract data of ages more than 25 in a DF
-high_above_25 = df[df['Age'] > 25]
+
+
 #using dot
 u = np.array([1,2])
 v = np.array([3,1])
 result = np.dot(u,v)
 result is 5(1*3+2*1=5)
-#calculate mean for a colum in a DF
-games_home['PLUS_MINUS'].mean()
+
 #requests
 import requests
 url = 'https://www.sample.com/'
 r = requests.get(url)
 r.status_code : 200
 #WEB SCRAPING 
-#import Beautiful Soup to parse thr web page content EG
+#import Beautiful Soup to parse the web page content EG
 from bs4 import BeautifulSoup
 import requests
 from bs4 import BeautifulSoup
@@ -634,17 +594,20 @@ soup = BeautifulSoup(html_content, 'html.parser')
 print(html_content[:500])
 #pandas read_html for table extraction
 read_html()
+
 #extracting tables from webpages
 import pandas as pd
 URL = 'https://en.wikipedia.org/wiki/List_of_largest_banks'
 tables = pd.read_html(URL)
 df = tables[0]   or use df = tables(2)     #required table will have index 2
 print(df)
+
 #reading JSON files
 import json
 with open('filesample.json', 'r') as openfile:
     json_object = json.load(openfile)
 print(json_object)
+
 #reading XML files
 import pandas as pd
 import xml.etree.ElementTree as etree
@@ -658,11 +621,8 @@ for node in root:
     birthday = nod.find('birthday').text
     df = df.append(pd.Series([name, phonenumber, birthday],
     index = columns)....., ignore_index = True
-#applying transform to a DF
-df = df.transform(func = lambda x : x + 10)
-print(df)
-#find sqt of each element in the DF
-result = df.transform(func = ['sqrt]')
+                   
+
 #SAMPLE OF WEBSCRAPING
 import requests
 from bs4 import BeautifulSoup
@@ -766,15 +726,17 @@ len(dataframe_list)
 dataframe_list[5]
 #We can also use the match parameter to select the specific table we want. If the table contains a string matching the text it will be read.
 pd.read_html(url, match="10 most densely populated countries", flavor='bs4')[0]
+
 #download historical stock prices using yfinance
 import yfinance as yf
 #download historical data for a stock    EG
 msft = yf.Ticker('MSFT')      #AKA microsoft
 msft_data = msft.history(period='max')
 #display the downloaded data
-masft_data.head()
+msft_data.head()
 country = usa
 sector = technology
+
 #how to ignore warnings
 import warnings
 warnings.filterwarnings('ignore', category=FutureWarning)    #ignore all warnings
@@ -804,6 +766,7 @@ for row in soup.find("tbody").find_all('tr'):
     netflix_data = netflix_data.append({"Date":date, "Open":Open, "High":high, "Low":low, "Close":close, "Adj Close":adj_close, "Volume":volume}, ignore_index=True)    
 #    Print the extracted data
 netflix_data.head()
+
 #Steps for Extracting data using pandas library
 #1:
 read_html_pandas_data = pd.read_html(url)
@@ -823,102 +786,26 @@ print(variablename.values)
 print(variablename.columns)
 #print index for the rows:row numbers or names
 print(variablename.index)
-#subsetting rows
-dogs[dogs['height_cm'] > 50]
-#sort 1 column(smallest to largest)
-df.sort_values('column_name', ascending= False)
-#sort multiple columns
-df.sort_values(['column_name1', 'column_name2'])
-#EG of sort multiple colums
-home_fam = house.sort_values(['region','family'], ascending=[True,False])
-#select multiple columns of a DF
-df[['col_a', 'col_b']]
-#filtering or selecting rows
-dogs[dogs['height_cm'] > 60]
-#filtering or selecting rows under multiple conditions [for and or condition use "|"]
-dogs[(dogs['height_cm'] > 60) & (dogs['color'] == 'tan')]
-#subsettin rows by categorical variables using .isin() method. homelessness is the DF
-canu = ["California", "Arizona", "Nevada", "Utah"]
-mojave_homelessness = homelessness["state"].isin(canu)
-homelessness[mojave_homelessness]
-print(mojave_homelessness)
-#Adding new column
-dogs['height_m'] = dogs['height_cm'] / 100
-# EXAMPLE: Which state has the highest number of homeless individuals per 10,000 people in the state?
-# Create indiv_per_10k col as homeless individuals per 10k state pop   EG
-homelessness["indiv_per_10k"] = 10000 * homelessness["individuals"] / homelessness["state_pop"] 
-# Subset rows for indiv_per_10k greater than 20   EG
-high_homelessness = homelessness[homelessness["indiv_per_10k"] > 20]
-# Sort high_homelessness by descending indiv_per_10k   EG
-high_homelessness_srt = high_homelessness.sort_values(["indiv_per_10k"], ascending= False)
-# From high_homelessness_srt, select the state and indiv_per_10k cols   EG
-result = high_homelessness_srt[["state", "indiv_per_10k"]]
-# To get cummulative sum
-dogs['weight_kg'].cumsum()
-#mean, median, min, max of column in a DF
-print(sales["weekly_sales"].mean())
+
+
+
+
 #custom fucntion using agg on multiple columns
 def iqr(column):
     return column.quantile(0.75) - column.quantile(o.25)
 print(sales["temperature_c", "fuel", "unemployment"].agg(iqr))   #to calculate it with median we can edit ".agg([iqr, np.median])"
-#create new column in DF
-df['new_column'] = df['existing_column'] / 100
-# Add a column named gdp_per_capita to gdp_pop that divides the gdp by pop
-gdp_pop['gdp_per_capita']= gdp_pop['gdp'] / gdp_pop['pop']
-#drop duplicate names   (name is the column we want to check for duplicates)
-vet_visits.drop_duplicates(subset='name')
-#drop duplicate pairs
-unique_dogs = vet_visits.drop_duplicates(subset= ['name', 'breed'])
-# Subset the rows where is_holiday is True and drop duplicate dates
-holiday_dates = sales[sales['is_holiday']].drop_duplicates(subset='date')
-#sort and count values
-unique_dogs['breed'].value_counts(sort=True)
-#proportions  (get percentage of values)
-unique_dogs['breed'].value_counts(normalize=True)
-# Get the proportion of departments of each number and sort
-dept_props_sorted = store_depts["department"].value_counts(sort=True, normalize=True)
-print(dept_props_sorted)
-#Grouped summaries   (group by color variable and slect the weight column along with getting mean)
-dogs.groupby('color')['weight_kg'].mean()
-#Multiple grouped summaries
-dogs.groupby('color')['weight_kg'].agg([min, max, sum])
-#Grouping by multiple variables
-dogs.groupby(['color', 'breed'])['weight_kg'].mean()
-#Group many groups, many summaries
-dogs.groupby(['color', 'breed'])[['weight_kg', 'height_cm']].mean()
-# Calc total weekly sales
-sales_all = sales["weekly_sales"].sum()
-# Subset for type A stores, calc total weekly sales
-sales_A = sales[sales["type"] == "A"]["weekly_sales"].sum()
-# Subset for type B stores, calc total weekly sales
-sales_B = sales[sales["type"] == "B"]["weekly_sales"].sum()
-# Subset for type C stores, calc total weekly sales
-sales_C = sales[sales["type"] == "C"]["weekly_sales"].sum()
-# Get proportion for each type
-sales_propn_by_type = [sales_A, sales_B, sales_C] / sales_all
-print(sales_propn_by_type)
-# For each store type, aggregate unemployment and fuel_price_usd_per_l: get min, max, mean, and median
-unemp_fuel_stats = sales.groupby("type")[["unemployment", "fuel_price_usd_per_l"]].agg([min, max, np.mean, np.median])
-# For each airline, select nb_bumped and total_passengers and sum
-airline_totals = airline_bumping.groupby("airline")[["nb_bumped", "total_passengers"]].sum()
-#Group by to pivot table
-dogs.pivot_table(values='weight_kg', index='color')
-#Multiple statistics with pivot table
-dogs.pivot_table(values='weight_kg', index='color', aggfunc=[np.mean, np.median])
-#Pivot on two variables
-dogs.pivot_table(values='weight_kg', index='color', columns='breed')
-#filling missing values in pivot tables
-dogs.pivot_table(values='weight_kg', index='color', columns='breed', fill_value=0)
-#summing to get mean of column and row in pivot tables
-dogs.pivot_table(values='weight_kg', index='color', columns='breed', fill_value=0, margins=True)
-# Pivot for mean weekly_sales for each store type
-mean_sales_by_type = sales.pivot_table(values="weekly_sales", index="type")
-# Pivot for mean and median weekly_sales for each store type
-mean_med_sales_by_type = sales.pivot_table(values="weekly_sales", index="type", aggfunc=[np.mean, np.median])
-# Pivot for mean weekly_sales by store type and holiday 
-mean_sales_by_type_holiday = sales.pivot_table(values="weekly_sales", index="type", columns="is_holiday")
-# Print mean weekly_sales by department and type; fill missing values with 0
-print(sales.pivot_table(values="weekly_sales", index="department", columns="type", fill_value=0))
+
+
+
+
+
+
+
+
+
+
+
+
 #Setting a column as index
 dogs_ind= dogs.set_index('name')
 #Remove an index
