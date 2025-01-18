@@ -39,6 +39,32 @@ np.logical_and(brics['area'] > 8, brics['area'] < 10 #to get the bool values
 # or
 brics[np.logical_and(brics['area'] > 8, brics['area'] < 10)]
 
+#print out label of row and data in row as Panda series in DF
+for lab, row in brics.iterrows():
+    print(lab)
+    print(row)
+
+#print specific row in DF using for loop
+for lab, row in brics.iterrows():
+    print(lab + ":" + row["capital"])
+  
+#access column values using the column name as a key in a DF for loop
+print(lab + ": " + str(row["column_name"]))
+
+#add column that contains names of country in uppercase using for loop
+for lab, row in cars.iterrrows():
+    cars.loc[lab, "COUNTRY"] = row["country"].upper()
+#most efficient way to do what is above
+cars["COUNTRY"] = cars["country"].apply(str.upper)
+
+#add new column for name length in a DF
+for lab, row in brics.iterrows():
+    brics.loc[lab, "name_length"] = len(row["country"])
+print(brics)
+#most efficient way to do what is above
+brics["name_length"] = brics["country"].apply(len)
+print(brics)
+
 
 
 
