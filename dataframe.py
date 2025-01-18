@@ -171,6 +171,8 @@ unemp_fuel_stats = sales.groupby("type")[["unemployment", "fuel_price_usd_per_l"
 airline_totals = airline_bumping.groupby("airline")[["nb_bumped", "total_passengers"]].sum()
 # Get the total number of avocados sold of each size
 nb_sold_by_size = avocados.groupby("size")["nb_sold"].sum()
+# Print variance and sd of co2_emission for each food_category
+print(food_consumption.groupby('food_category')['co2_emission'].agg([np.var, np.std]))
 
 #Group by to pivot table
 dogs.pivot_table(values='weight_kg', index='color')
@@ -442,5 +444,9 @@ price_diffs = jpm_wells_bac.diff()
 price_diffs.plot(y=['close_jpm', 'close_wells', 'close_bac'])
 plt.show()
 
+#ADD COLUMN FOR NAME LENGTH
+#most efficient way to do what is above
+brics["name_length"] = brics["country"].apply(len)
+print(brics)
 
                
