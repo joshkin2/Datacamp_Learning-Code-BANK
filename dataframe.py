@@ -69,8 +69,20 @@ print(brics)
 high_above_25 = df[df['Age'] > 25]
 #subsetting rows
 dogs[dogs['height_cm'] > 50]
+
+# STATISTICS IN PYTHON - MEAN- Average
+np.mean(df['column'])
+# MEDIAN- BEST USED WHEN DATA IS SKEWED
+np.median(df['column'])
+# MODE
+import statistics
+statistics.mode(df['column'])
+# OR MODE - CATEGORICAL VALUES
+df['column'].value_counts()
 #calculate mean for a colum in a DF
 games_home['PLUS_MINUS'].mean()
+# calculate mean and median of a column in a sales dataset
+sales['unit_price'].agg([np.mean, np.median])
 
 #applying transform to a DF
 df = df.transform(func = lambda x : x + 10)
@@ -86,6 +98,10 @@ df.sort_values(['column_name1', 'column_name2'])
 home_fam = house.sort_values(['region','family'], ascending=[True,False])
 #select multiple columns of a DF
 df[['col_a', 'col_b']]
+# Select the title_org, title_seq, and diff columns from orig_seq
+titles_diff = orig_seq[['title_org', 'title_seq', 'diff']]
+# Use .isin() to subset the rows of non_mus_tcks where tid is in the tid column of tracks_invoices.
+top_tracks = non_mus_tcks[non_mus_tcks['tid'].isin(tracks_invoices['tid'])]
 
 #filtering or selecting rows under multiple conditions [for and or condition use "|"]
 dogs[(dogs['height_cm'] > 60) & (dogs['color'] == 'tan')]
@@ -247,6 +263,8 @@ print(mean_temp_by_year[mean_temp_by_year == mean_temp_by_year.max()])
 mean_temp_by_city = temp_by_country_city_vs_year.mean(axis="columns")
 # Filter for the city that had the lowest mean temp
 print(mean_temp_by_city[mean_temp_by_city == mean_temp_by_city.min()])
+#Create a Boolean index, named boolean_filter, that selects rows from the left table with the job of 'Director' and avoids rows with the job of 'Director' in the right table.
+boolean_filter = ((crews_self_merged['job_dir'] == 'Director') & (crews_self_merged['job_crew'] != 'Director'))
 
 #Detecting missing values
 dogs.isna()
@@ -261,31 +279,157 @@ plt.show()
 dogs.dropna()
 #Replacing missing values(best if you are working with large data)
 dogs.fillna(0)
+# check null values in a column and count them
+null_budget = movies_financials['budget'].isnull()
+number_of_missing_fin = null_budget.sum()
+print(number_of_missing_fin)
+#OR
+# Count the number of rows in the budget column that are missing
+number_of_missing_fin = movies_financials['budget'].isnull().sum()
+# SUBSET ROWS WHERE COLUMN IS NULL (isnull)
+scifi_only = action_scifi[action_scifi['genre_act'].isnull()]
+# Create an index that returns true if name_1 or name_2 are null
+m = ((iron_1_and_2['name_1'].isnull()) | 
+     (iron_1_and_2['name_2'].isnull()))
 
+#Creating dict(From a list of dicts-row by row) or (From a dict of lists-column by column)
+my_dict= {
+    'Key1': 'value',
+    'Key2': 'another. value',
+    'Key3': 1952
+}
+#List of dict-by row(keys are the columns, values are the inputs per rows
+l_o_dicts= [
+    {'name':'ginger', 'breed':'Dash', 'height':22, 'weight':10, 'dob': '2019-03-14'},
+    {'name':'scot', 'breed': 'dalma', 'height':59, 'weight':25, 'dob':'2019-05-09'}
+]
+new_dogs = pd.DataFrame(l_o_dicts)
+#Dict of lists-by column
+dict_o_l= {
+    'name': ['ginger', 'scot'], 'breed':['Dash', 'dalma'], 'height': [22,59], 'weight':[10,25],
+    'dob':['2019-03-14', '2019-05-09']
+}
+new_dogs = pd.DataFrame(dict_o_l)
 
+# CSV to DataFrame
+new_dogs = pd.read_csv('new_dogs.csv")
+# DataFrame to CSV
+new_dogs.to_csv('new_dogs_with_bmi.csv')
 
+# merging = joining, tables = Dataframes (default= inner)
+# Merging tables( join ward df on census df) this is inner join
+wards_census = wards.merge(census, on= 'ward')
+# add suffix to differentiate source of df during merge
+wards_census = wards.merge(census, on= 'ward', suffixes=('_ward', '_cen'))
+# Group the results by title then count the number of accounts
+counted_df = licenses_owners.groupby('title').agg({'account':'count'})
+# Sort the counted_df in descending order
+sorted_df = counted_df.sort_values(by= 'account', ascending= False)
 
+#formula for merging 3 or more tables
+df1.merge(df2, on= 'col')\.merge(df3, on= 'col')
+# Group by ward, pop_2010, and vacant, then count the number of accounts
+pop_vac_lic = land_cen_lic.groupby(['ward', 'pop_2010', 'vacant'], as_index=False).agg({'account': 'count'})
 
+#LEFT JOIN merge
+movies_taglines= movies.merge(taglines, on='id', how= 'left')
+# MERGE WITH RIGHT JOIN
+tv_movies = movies.merge(tv_genre, how='right', left_on='id', right_on= 'movie_id')
+# OUTER JOIN
+family_comedy = family.merge(comedy, on='movie_id', how='outer', suffixes=('_fam', '_com'))
+# SELF JOIN (merge a table to itself, when: hierarchical and sequential relationship present)
+original_sequels = sequels.merge(sequels, left_on= 'sequel', right_on= 'id', suffixes = ('_org', '_seq'))
 
+# MERGING ON INDEXES
+# Merge to the movies table the ratings table on the index
+movies_ratings = movies.merge(ratings, on='id', how='left')
+# MULTIINDEX MERGE
+samuel_casts = samuel.merge(casts, on=['movie_id', 'cast_id'])
+# INDEX MERGE WITH LEFT_ON AND RIGHT_ON
+movies_genres = movies.merge(movie_to_genres, left_on= 'id'
+                             , left_index= True,
+                             right_on= 'movie_id', right_index = True)
 
+# FILTERING JOINS (SEMI JOIN) - filtering genres by what's in top tracks table
+genres_tracks = genres.merge(top_tracks, on = 'gid')
+top_genres = genres[genres['gid'].isin(genres_tracks['gid'])]
+# ANTI JOIN STEPS
+# 1 Merge genres and top_tracks
+genres_tracks = genres.merge(top_tracks, on= 'gid', how = 'left', indicator= True)
+#2# Select the gid column where _merge is left_only
+gid_list = genres_tracks.loc[genres_tracks['_merge'] == 'left_only', 'gid']
+#3 Get non top genres
+non_top_genres = genres[genres['gid'].isin(gid_list)]
 
+# Performing SEMI JOIN steps
+# 1 Merge the non_mus_tck and top_invoices tables on tid
+tracks_invoices = non_mus_tcks.merge(top_invoices, on='tid')
+# 2 Use .isin() to subset non_mus_tcks to rows with tid in tracks_invoices
+top_tracks = non_mus_tcks[non_mus_tcks['tid'].isin(tracks_invoices['tid'])]
+# 3 Group the top_tracks by gid and count the tid rows
+cnt_by_gid = top_tracks.groupby(['gid'], as_index=False).agg({'tid':'count'})
+# 4 Merge the genres table to cnt_by_gid on gid and print
+print(cnt_by_gid.merge(genres, on='gid'))
+# VALIDATING MERGES
+.merge(validate='one_to_one' or 'one_to_many' or 'many_to_one' or 'many_to_many')
 
+# CONCATENATE DF TOGETHER VERTICALLY
+# BASIC CONCATENATION
+pd.concat([inv_jan, inv_feb, inv_mar])
+# IGNORING INDEX WHEN CONCATENATING (index goes from 0 to n-1
+pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= True)
+# Setting labels to original tables usign keys
+pd.concat([inv_jan, inv_feb, inv_mar], ignore_index= False, keys = ['jan', 'feb', 'mar'])
+# CONCATENATE TABLES WITH DIFFERENT COLUMN NAMES default join is 'outer'
+pd.concat([inv_jan, inv_feb], sort=True)
+# concatenate matching columns9showing column names in 2 tables
+pd.concat([inv_jan, inv_feb], join= 'inner')
+# Group the invoices by the index keys and find avg of the total column
+avg_inv_by_month = inv_jul_thr_sep.groupby(level=0).agg({'total':'mean'})
+# VERIFYING CONCATENATIONS (False is default value)
+.concat(verify_integrity= False)
 
+# USING MERGE_ORDERED() (default= outer) -- FOR ORDERED DATA/TIME SERIES, FILLING MISSING VALUES
+pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'))
+# FORWARD FILL TO FILL MISSING WITH PREVIOUS VALUE
+pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'), fill_method= 'ffill')
+# Using merge_ordered om multiple columns
+date_ctry = pd.merge_ordered(gdp, pop, on=['country', 'date'], fill_method= 'ffill')
+# Use merge_ordered() to merge gdp and sp500 on year and date
+gdp_sp500 = pd.merge_ordered(gdp, sp500, left_on= 'year', right_on='date', how='left')
+#Subset the gdp_sp500 table, select the gdp and returns columns, and save as gdp_returns
+gdp_returns = gdp_sp500[['gdp', 'returns']]
 
+# MERGE_ASOF() - similar to merge_ordered() left join, match on equal to or nearest value
+# USE MERGE_ASOF() WHEN- DATA SAMPLED FROM A PROCESS, DEVELOPING A TRAINING SET(NO DATA LEAKAGE)
+pd.merge_asof(visa, ibm, on='date_time', suffixes=('_visa', '_ibm'))
+# use direction argument 'forward' to select 1st row on right table whose 'on' key column is greater than or equal to left keys column, use 'nearest' where rows with nearest timees are matched
+pd.merge_asof(visa, ibm, on=['date_time'], suffixes=('_visa', '_ibm"), direction='forward')      
 
+# Using merge_asof() to create dataset STEPS
+# 1 Merge gdp and recession on date using merge_asof()
+gdp_recession = pd.merge_asof(gdp,recession, on='date')
+# 2 Create a list based on the row value of gdp_recession['econ_status']
+is_recession = ['r' if s=='recession' else 'g' for s in gdp_recession['econ_status']]
+# 3 Plot a bar chart of gdp_recession
+dp_recession.plot(kind='bar', y='gdp', x='date', color=is_recession, rot=90)
+plt.show()
 
+# RESHAPING DATA WITH .MELT() id_vars= columns from original dataset we don't want to change
+social_fin_tall = social_fin.melt(id_vars=['financial','company'])
+# MELTING WITH VALUE_VARS, value_vars argument allows controlling which columns are unpivoted
+social_fin_tall = social_fin.melt(id_vars=['financial','company'], value_vars=['2018','2017')
+# MELTING WITH COLUMN NAMES
+social_fin_tall = social_fin.melt(id_vars=['financial','company'], value_vars=['2018','2017'], var_name='year', value_name='dollars')
 
-
-
-
-
-
-
-
-
-
-
-
+# SELECTING DATA WITH .QUERY()
+# QUERYING ON SINGLE CONDITION
+stocks.query('nike >= 90')
+# QUERYING ON MULTIPLE CONDITIONS
+stocks.query('nike > 90 and disney <140')
+stocks.query('nike > 96 or disney < 98')
+# USING QUERY TO SELECT TEXT
+stocks_long.query('stock=="disney" or (stock==="nike" and close < 90)')
 
 
 
