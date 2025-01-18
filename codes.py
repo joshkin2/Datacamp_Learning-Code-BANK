@@ -1,11 +1,4 @@
 
-
-# import decision trees scikit-learn libraries
-from sklearn import tree
-from sklearn.metrics import accuracy_score, confusion matrix
-# changing opasity of colors in  the argument inside plt.scatter()
-(alpha = 0.8) #zero is transparent, one is not at all transparent
-
 #NUMPY LOGIC
 # to compare values in NumPy
 np.logical_and(bmi > 21, bmi < 22)
