@@ -27,3 +27,41 @@ data = {'capital': 'rome', 'population': 59.83}
 europe['italy'] = data
 print(europe)
 
+#delete key from a dict
+del dict_name[key]
+#to see all the keys in a dict
+dict.keys()
+#see all values in a dict
+dict.values()
+#extract keys in a dict as a list
+list(dict.keys())
+
+#print out elemenets in a dict using for loop(output may be unordered)
+world = {"ghana":20,
+         "usa": 2.5.
+         "nigeria":23}
+for key, value in world.items():
+    print(key + "--" + str(value))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
