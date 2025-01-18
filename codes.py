@@ -1,44 +1,25 @@
-# plot histogram, scatterplot, graph
-plt.hist(x,y), plt.scatter(x,y), plt.plot(x,y)
+
 # Print variance and sd of co2_emission for each food_category
 print(food_consumption.groupby('food_category')['co2_emission'].agg([np.var, np.std]))
-# Create histogram of co2_emission for food_category 'beef'
-food_consumption[food_consumption['food_category'] == 'beef']['co2_emission'].hist()
-plt.show()
-# Create histogram of co2_emission for food_category 'eggs'
-food_consumption[food_consumption['food_category'] == 'eggs']['co2_emission'].hist()
-plt.show()
-# display graph- nothing goes in parenthesis
-plt.show()
-# build histogram with 5 bins. few bins= oversimplicity, too many bins= overcomplicate and hinder bigger picture
-plt.hist(x or y, bins=5)
-# clean up plot
-plt.clf()
-# labelling graphs, adding title, starting y from zero
-plt.xlabel("year")
-plt.ylabel("population")
-plt.title("World Population Projections")
-plt.yticks([0,2,4,6,8,10])
-plt.show()
-# add data to graph source
-year = [1800 ,1850 ,1900] + year
-pop = [1.0, 1.262, 1.650] + pop
+
+
+
+
 # import decision trees scikit-learn libraries
 from sklearn import tree
 from sklearn.metrics import accuracy_score, confusion matrix
 # changing opasity of colors in  the argument inside plt.scatter()
 (alpha = 0.8) #zero is transparent, one is not at all transparent
-# to add grid to plot
-plt.grid(True)
-## Dictionary Datacamp Lecture
-#To get position of a value in a list use
-new variable = variablethatcontainsvalueneeded.index("value you're looking for")
+
+
 # converting lists to dictionaries
 pop = [30.55, 2.77, 39.21] # list
 countries = ["afghan", "albania", "algeria"] # list
 world = {"afghan":30.55, "albania":2.77. "algreria":39.21} # dict
 # to find value of albania in dict use
 world["albania"]
+#To get position of a value in a list use
+new variable = variablethatcontainsvalueneeded.index("value you're looking for")
 # get the index of albania in list
 ind_albania = countries.index("albania")
 # to print out keys
@@ -387,6 +368,7 @@ ends = np_aw_t[-1,:]
 # Plot histogram of ends, display plot EG
 plt.hist(ends)
 plt.show()
+
 #calculate length of string and list
 string_length = len('hello, world')
 list_length = len([1,2,3,4,5])
@@ -1001,25 +983,13 @@ print(mean_temp_by_year[mean_temp_by_year == mean_temp_by_year.max()])
 mean_temp_by_city = temp_by_country_city_vs_year.mean(axis="columns")
 # Filter for the city that had the lowest mean temp
 print(mean_temp_by_city[mean_temp_by_city == mean_temp_by_city.min()])
-#Creating bar plots
-avg_weight_by_breed.plot(kind="bar", title= "Mean Weight by Dog Breed")
-plt.show()
-#Creating line plots
-sully.plot(x='date', y='weight_kg', kind= 'line')
-plt.show()
-#Rotating axis labels
-sully.plot(x='date', y='weight_kg', kind= 'line', rot=45)
-#Creating Scatter plots
-dog_pack.plot(x='height_cm', y='wight_kg', kind= 'scatter')
-#Layering plots and adding a legend and transparency(alpha)
-dog_pack[dog_pack['sex']=='F']['height_cm'].hist(alpha=0.7)
-dog_pack[dog_pack['sex']=='M']['height_cm'].hist(alpha=0.7)
-plt.legend(['F', 'M'])
-plt.show()
+
+
 # Get the total number of avocados sold of each size
 nb_sold_by_size = avocados.groupby("size")["nb_sold"].sum()
 #Subset avocados for the conventional type price column. Create a histogram.
 avocados[avocados["type"]=="conventional"]["avg_price"].hist()
+
 #Detecting missing values
 dogs.isna()
 #Detecting any missing values
@@ -1033,6 +1003,7 @@ plt.show()
 dogs.dropna()
 #Replacing missing values(best if you are working with large data)
 dogs.fillna(0)
+
 #Creating dict(From a list of dicts-row by row) or (From a dict of lists-column by column)
 my_dict= {
     'Key1': 'value',
@@ -1198,9 +1169,7 @@ import statistics
 statistics.mode(df['column'])
 # OR MODE - CATEGORICAL VALUES
 df['column'].value_counts()
-# Histogram of co2_emission for rice and show plot
-rice_consumption['co2_emission'].hist()
-plt.show()
+
 # Calculate mean and median of co2_emission with .agg()
 print(rice_consumption['co2_emission'].agg([np.mean, np.median]))
 
