@@ -431,8 +431,16 @@ stocks.query('nike > 96 or disney < 98')
 # USING QUERY TO SELECT TEXT
 stocks_long.query('stock=="disney" or (stock==="nike" and close < 90)')
 
+# calculate column range using range fucntion
+def range(column):
+    return column.max() - column.min()
+print(sales['unit_price'].agg(range)
 
-
+# Compute price diff 1
+price_diffs = jpm_wells_bac.diff()
+# Plot the price diff of the close of jpm, wells and bac only 2
+price_diffs.plot(y=['close_jpm', 'close_wells', 'close_bac'])
+plt.show()
 
 
                
