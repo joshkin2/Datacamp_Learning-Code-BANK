@@ -153,6 +153,8 @@ dogs.groupby(['color', 'breed'])[['weight_kg', 'height_cm']].mean()
 unemp_fuel_stats = sales.groupby("type")[["unemployment", "fuel_price_usd_per_l"]].agg([min, max, np.mean, np.median])
 # For each airline, select nb_bumped and total_passengers and sum
 airline_totals = airline_bumping.groupby("airline")[["nb_bumped", "total_passengers"]].sum()
+# Get the total number of avocados sold of each size
+nb_sold_by_size = avocados.groupby("size")["nb_sold"].sum()
 
 #Group by to pivot table
 dogs.pivot_table(values='weight_kg', index='color')
@@ -172,6 +174,118 @@ mean_med_sales_by_type = sales.pivot_table(values="weekly_sales", index="type", 
 mean_sales_by_type_holiday = sales.pivot_table(values="weekly_sales", index="type", columns="is_holiday")
 # Print mean weekly_sales by department and type; fill missing values with 0
 print(sales.pivot_table(values="weekly_sales", index="department", columns="type", fill_value=0))
+# Pivot avg_temp_c by country and city vs year
+temp_by_country_city_vs_year = temperatures.pivot_table("avg_temp_c", index=["country","city"], columns="year")
+
+#Setting a column as index
+dogs_ind= dogs.set_index('name')
+#Remove an index
+dogs_ind.reset_index()
+#Dropping an index
+dogs_ind.reset_index(drop=True)
+#Multi-level indexes-hierarchical indexes
+dogs_ind3 = dogs.set_index(['breed', 'color'])
+#sorting by index values
+dogs_ind3.sort_index()
+#Controlling sort_index
+dogs_ind3.sort_index(level=['color', 'breed'], ascending= [True, False])
+# Sort temperatures_ind by index values at the city level
+print(temperatures_ind.sort_index(level="city"))
+# Sort temperatures_ind by country then descending city
+print(temperatures_ind.sort_index(level=["country", "city"], ascending= [True, False]))
+# Sort index in DF before slicing
+dogs_srt = dogs.set_index(['breed', 'color']).sort_index()
+
+#Subsetting with indexes
+dogs[dogs['name'].isin(['Bella', 'stella'])]
+#Subsetting with Loc- filters on index values
+dogs_ind.loc[['Bella', 'Stella']]
+#subsetting on duplicated index values
+dogs_ind2.loc['Labrador']
+#subset outer level with a list
+dogs_ind3.loc[['Labrador', 'Chihuahua']]
+#subset inner levels with a list of tuples
+dogs_ind3.loc[[('Labra', 'Brown'), ('chihua', 'Tan')]]
+#Subset avocados for the conventional type price column. Create a histogram.
+avocados[avocados["type"]==["conventional"]["avg_price"]].hist()
+
+#Slicing outer index level
+dogs_srt.loc['chow': 'poodle']
+#Slicing inner index levels
+dogs_srt.loc[('Labrador', 'Brown'): ('Schnauzer', 'Grey')]
+#Slicing columns
+dogs_srt.loc[:, 'name':'height_cm']
+#Slice rows and columns
+dogs_srt.loc[('Lab', 'Brown'):('Sch', 'Grey'), 'name':'height_cm']
+#slicing dates
+dogs.loc['2014-08-25':'2016-09-16'] or dogs.loc['2014':'2016']
+
+#Subsetting by row/column number
+dogs.iloc[2:5,1:4]
+# Use Boolean conditions to subset temperatures for rows in 2010 and 2011
+temperatures_bool = temperatures[(temperatures["date"] >= "2010-01-01") & (temperatures["date"]<= "2011-01-01")]
+# Use slicing to get the first 5 rows
+print(temperatures.iloc[:5])
+# Use slicing to get columns 3 to 4
+print(temperatures.iloc[:,2:4])
+# Use slicing in both directions at once
+print(temperatures.iloc[:5,2:4])
+
+#Axis argument :index means- calculate the stats across rows
+dogs_height.mean(axis="index")
+#Axis argument for across columns
+dogs_height.mean(axis="columns")
+
+#Access the components of a date (year, month and day)
+temperatures["year"] = temperatures["date"].dt.year
+
+# Get the worldwide mean temp by year
+mean_temp_by_year = temp_by_country_city_vs_year.mean()
+# Filter for the year that had the highest mean temp
+print(mean_temp_by_year[mean_temp_by_year == mean_temp_by_year.max()])
+# Get the mean temp by city
+mean_temp_by_city = temp_by_country_city_vs_year.mean(axis="columns")
+# Filter for the city that had the lowest mean temp
+print(mean_temp_by_city[mean_temp_by_city == mean_temp_by_city.min()])
+
+#Detecting missing values
+dogs.isna()
+#Detecting any missing values
+dog.isna().any()
+#Counting missing values
+dogs.isna().sum()
+#Plotting missing values
+dogs.isna().sum().plot(kind='bar')
+plt.show()
+#Removing missing values
+dogs.dropna()
+#Replacing missing values(best if you are working with large data)
+dogs.fillna(0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
