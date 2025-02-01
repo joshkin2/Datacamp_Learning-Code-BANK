@@ -368,6 +368,14 @@ result2 = count_entries(tweets_df, "lang", "source")
 print(result1)
 print(result2)
 
+def extract_emails(filename):
+    with open(filename, 'r', encoding='utf-8') as f:
+        text= f.read()
+        email_patt= r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+        emails=re.findall(email_patt,text)
+        return emails
+filename= 'data\email_exchanges_big.txt'
+print(extract_emails(filename))
 
 
 
