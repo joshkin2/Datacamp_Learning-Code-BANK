@@ -401,13 +401,91 @@ shout_spells = map(lambda item:item+'!!!', spells)
 shout_spells_list= list(shout_spells)
 # Print the result
 print(shout_spells_list)
+# EXERCISE - a new list that contains only strings that have more than 6 characters.
+# Create a list of strings: fellowship
+fellowship = ['frodo', 'samwise', 'merry', 'pippin', 'aragorn', 'boromir', 'legolas', 'gimli', 'gandalf']
+# Use filter() to apply a lambda function over fellowship: result
+result = filter(lambda member: len(member)>6, fellowship)
+# Convert result to a list: result_list
+result_list=list(result)
+# Print result_list
+print(result_list)
+# EXERCISE - takes a list of strings as an argument and returns, as a single-value result, the concatenation of all of these strings.
+# Import reduce from functools
+from functools import reduce
+# Create a list of strings: stark
+stark = ['robb', 'sansa', 'arya', 'brandon', 'rickon']
+# Use reduce() to apply a lambda function over stark: result
+result = reduce(lambda item1,item2:item1 + item2, stark)
+# Print the result
+print(result)
 
-
-
-
-
-
-
+#ERROR HANDLING
+#EXCEPTIONS
+def sqrt(x):
+  try:
+    return x ** 0.5
+    except:
+    print('x must be an int or float')
+# CATCHING TYPERROR
+def sqrt(x):
+  try:
+    return x ** 0.5
+  except TypeError:
+    print('x must be an int or float')
+# RAISING ERROR
+def sqrt(x):
+  if x<0:
+    raise ValueError('x must be non-negative')
+  try:
+    return x ** 0.5
+  except TypeError:
+    print('x must be an int or float')
+# EXERCISE
+# Define shout_echo
+def shout_echo(word1, echo=1):
+    """Concatenate echo copies of word1 and three
+    exclamation marks at the end of the string."""
+    # Initialize empty strings: echo_word, shout_words
+    echo_word= ''
+    shout_words=''
+    # Add exception handling with try-except
+    try:
+        # Concatenate echo copies of word1 using *: echo_word
+        echo_word = word1*echo
+        # Concatenate '!!!' to echo_word: shout_words
+        shout_words = echo_word+'!!!'
+    except:
+        # Print error message
+        print("word1 must be a string and echo must be an integer.")
+    # Return shout_words
+    return shout_words
+# Call shout_echo
+shout_echo("particle", echo="accelerator")
+# EXERCISE
+# Define shout_echo
+def shout_echo(word1, echo=1):
+    """Concatenate echo copies of word1 and three
+    exclamation marks at the end of the string."""
+    # Raise an error with raise
+    if echo<0:
+         raise ValueError('echo must be greater than or equal to 0')
+    # Concatenate echo copies of word1 using *: echo_word
+    echo_word = word1 * echo
+    # Concatenate '!!!' to echo_word: shout_word
+    shout_word = echo_word + '!!!'
+    # Return shout_word
+    return shout_word
+# Call shout_echo
+shout_echo("particle", echo=5)
+#EXERCISE
+# Select retweets from the Twitter DataFrame: result
+result = filter(lambda x:x[0:2]=='RT', tweets_df['text'])
+# Create list from filter object result: res_list
+res_list=list(result)
+# Print all retweets in res_list
+for tweet in res_list:
+    print(tweet)
 
 
 
