@@ -377,9 +377,30 @@ def extract_emails(filename):
 filename= 'data\email_exchanges_big.txt'
 print(extract_emails(filename))
 
-
-
-
+#LAMBDA FUNCTIONS
+raise_to_power= lambda x,y:x**y
+raise_to_power(2,3)
+# ANONYMOUS FUNCTIONS
+nums= [1,2,3,4,5]
+square_all= map(lambda num:num**2, nums)
+print(square_all) # to see the object
+print(list(square_all)) # to see what it contains
+# EXERCISE
+# Define echo_word as a lambda function: echo_word
+echo_word = lambda word1,echo:word1*echo
+# Call echo_word: result
+result = echo_word('hey',5)
+# Print result
+print(result)
+# EXERCISE
+# Create a list of strings: spells
+spells = ["protego", "accio", "expecto patronum", "legilimens"]
+# Use map() to apply a lambda function over spells: shout_spells
+shout_spells = map(lambda item:item+'!!!', spells)
+# Convert shout_spells to a list: shout_spells_list
+shout_spells_list= list(shout_spells)
+# Print the result
+print(shout_spells_list)
 
 
 
