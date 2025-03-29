@@ -480,14 +480,66 @@ def shout_echo(word1, echo=1):
 shout_echo("particle", echo=5)
 #EXERCISE
 # Select retweets from the Twitter DataFrame: result
-result = filter(lambda x:x[0:2]=='RT', tweets_df['text'])
+result = filter(lambda x:x[0:2]=='RT', tweets_df['text']) # lambda function should check if the first 2 characters in a tweet x are 'RT
 # Create list from filter object result: res_list
 res_list=list(result)
 # Print all retweets in res_list
 for tweet in res_list:
     print(tweet)
-
-
+# EXERCISE
+# Define count_entries()
+def count_entries(df, col_name='lang'):
+    """Return a dictionary with counts of
+    occurrences as value for each key."""
+    # Initialize an empty dictionary: cols_count
+    cols_count = {}
+    # Add try block
+    try: #TRY BLOCK: function is called with the correct arguments, it processes the DataFrame and returns a dictionary
+        # Extract column from DataFrame: col
+        col = df[col_name]  
+        # Iterate over the column in DataFrame
+        for entry in col:
+            # If entry is in cols_count, add 1
+            if entry in cols_count.keys():
+                cols_count[entry] += 1
+            # Else add the entry to cols_count, set the value to 1
+            else:
+                cols_count[entry] = 1   
+        # Return the cols_count dictionary
+        return cols_count
+    # Add except block
+    except:  #except block so that when the function is called incorrectly, it displays error message:
+        print('The DataFrame does not have a '+ col_name+ 'column')
+# Call count_entries(): result1
+result1 = count_entries(tweets_df, 'lang')
+# Print result1
+print(result1)
+#EXERCISE
+# Define count_entries()
+def count_entries(df, col_name='lang'):
+    """Return a dictionary with counts of
+    occurrences as value for each key."""    
+    # Raise a ValueError if col_name is NOT in DataFrame
+    if col_name not in df.columns:  #col_name is not a column in the DataFrame df, raise a ValueError
+        raise ValueError('The DataFrame does not have a ' + col_name+ ' column.' )
+    # Initialize an empty dictionary: cols_count
+    cols_count = {}    
+    # Extract column from DataFrame: col
+    col = df[col_name]   
+    # Iterate over the column in DataFrame
+    for entry in col:
+        # If entry is in cols_count, add 1
+        if entry in cols_count.keys():
+            cols_count[entry] += 1
+            # Else add the entry to cols_count, set the value to 1
+        else:
+            cols_count[entry] = 1       
+        # Return the cols_count dictionary
+    return cols_count
+# Call count_entries(): result1
+result1= count_entries(tweets_df, 'lang')  # Call your new function count_entries() to analyze the 'lang' column of tweets_df
+# Print result1
+print(result1)
 
 
 
