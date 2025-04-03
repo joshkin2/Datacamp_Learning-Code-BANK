@@ -158,6 +158,42 @@ for chunk in pd.read_csv('tweets.csv',chunksize=10):
 # Print the populated dictionary
 print(counts_dict)
 
+# EXERCISE
+# Define count_entries()
+def count_entries(csv_file,c_size,colname):
+    """Return a dictionary with counts of
+    occurrences as value for each key.""" 
+    # Initialize an empty dictionary: counts_dict
+    counts_dict = {}
+   # Iterate over the file chunk by chunk
+    for chunk in pd.read_csv(csv_file,chunksize=c_size):
+        # Iterate over the column in DataFrame
+        for entry in chunk[colname]:
+            if entry in counts_dict.keys():
+                counts_dict[entry] += 1
+            else:
+                counts_dict[entry] = 1
+    # Return counts_dict
+    return counts_dict
+# Call count_entries(): result_counts
+result_counts = count_entries('tweets.csv',10,'lang')
+# Print result_counts
+print(result_counts)
+
+# LIST COMPREHENSIONS
+nums= [12,8,21,3,16]  # sampe 1
+new_nums= [num + 1 for num in nums]
+print(new_nums)
+result= [num for num in range(11)]  # sample 2
+print(result)
+pairs_2= [(num1,num2) for num1 in range(0,2) for num2 in range(6,8)]  #sample 3
+print(pairs_2)
+first_letters= [doc[0] for doc in doctor]
+valjean= 24601   # list comprehension can't be built over integer object
+# Create list comprehension: squares
+squares = [i**2 for i in range(0,10)]
+print(squares)
+
 
 
 
