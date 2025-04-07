@@ -235,9 +235,60 @@ new_fellowship = {member: len(member) for member in fellowship}
 # Print the new dictionary
 print(new_fellowship)
 
+# PRINTING FROM GENERATORS
+# generators use ()
+# list comp use []
+result= (num for num in range(6))
+for num in result:
+ print(num)
+ #OR
+result= (num for num in range(6))
+print(list(result))
+#OR
+result= (num for num in range(6))
+print(next(result))
+print(next(result))
+print(next(result)) # prints the first 3 values
 
+#CONDITIONALS IN GENERATOR EXPRESSIONS
+even_nums= (num for num in range(10) if num % 2==0)
+print(list(even_nums))
 
+#GENERATOR FUNCTION
+def num_sequence(n):
+ """Generate values from 0 to n"""
+ i= 0
+ while i<n:
+  yield i
+  i+=1
+# USE GENERATOR FUNCTION
+result= num_sequence(5)
+print(type(result))
+fpr item in result:
+print(item)
 
+#EXERCISE 1
+# Create generator object: result
+result = (num for num in range(0,31))
+# Print the first 5 values
+print(next(result))
+print(next(result))
+print(next(result))
+print(next(result))
+print(next(result))
+# Print the rest of the values
+for value in result:
+    print(value)
+
+# EXERCISE 2
+# extract length of values from list
+# Create a list of strings: lannister
+lannister = ['cersei', 'jaime', 'tywin', 'tyrion', 'joffrey']
+# Create a generator object: lengths
+lengths = ( len(person) for person in lannister)
+# Iterate over and print the values in lengths
+for value in lengths:
+    print(value)
 
 
 
