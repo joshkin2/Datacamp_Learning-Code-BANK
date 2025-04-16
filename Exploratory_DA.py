@@ -49,6 +49,29 @@ sns.boxplot(data=unemployment,x='2021',y='continent')
 plt.show()
 
 # DATA SUMMARIZATION
+# EXPLORING GROUPS OF DATA
+# .groupby() groups data by cat
+books.groupby('genre').mean()
+books.agg(['mean','std'])
+# Print yearly mean and standard deviation grouped by continent
+print(unemployment.groupby('continent').agg(['mean','std']))
+# SPECIFY AGGREGATION FOR COLUMNS
+books.agg({'rating':['mean','std'],'year':['median']})
+# NAMED SUMMARY COLUMNS
+books.groupby('genre').agg(mean_rating=('rating','mean'),std_rat=('rating','std'),
+                           median_year=('year','median'))
+# EXAMPLE OF CODE ABOVE
+continent_summary = unemployment.groupby("continent").agg(
+    # Create the mean_rate_2021 column
+    mean_rate_2021=('2021','mean'),
+    # Create the std_rate_2021 column
+    std_rate_2021=('2021','std')
+)
+print(continent_summary)
+
+# VISUALIZING CAT SUMMARIES
+sns.barplot(data=books,x='genre',y='rating')
+plt.show()
 
 
 
