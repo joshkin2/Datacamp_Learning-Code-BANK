@@ -73,8 +73,34 @@ print(continent_summary)
 sns.barplot(data=books,x='genre',y='rating')
 plt.show()
 
+# ADDRESSING MISSING DATA
+# COUNT MISSING VALUES - columns with missing values
+print(salaries.isna().sum())
+# Strategies that could be used
+# 1. Drop missing values if it's 5% or less of total values
+# 2. Impute mean, median, mode depending on distribution and context
+# 3. Impute by sub-group- diff eperience levels have diff median salary
 
+# DROPPING MISSING VALUES 
+# MISSING VALUES THERSHOLD
+threshold= len(salaries)* 0.05
+print(threshold)
+#create filter
+cols_to_drop= salaries.columns[salaries.isna().sum()<=threshold]
+# drop missing val for col below threshold
+salaries.dropna(subset=cols_to_drop, inplace=True)
+# IMPUTING SUMMARY STATS
+cols_with_missing_values= salaries.columns[salaries.isna().sum() >0]
+print(cols_with_missing_values)
+for col in cols_with_missing_values[:-1]:
+  salaries[col].fillna(salaries[col].mode()[0])
+# IMPUTING BY SUB-GROUP- returns median salary for each experience level
+salaries_dict= salaries.groupby('Experience')['Salary_usd'].median().to_dict()
+print(salaries_dict)
+salaries['Salary_usd'] = salaries['Salary_usd'].fillna(salaries['Experience'].map(salaries_dict))
+# when missing values are checked again there will be no missing values
 
+# EXERCISE 1
 
 
 
