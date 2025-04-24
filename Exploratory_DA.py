@@ -101,6 +101,107 @@ salaries['Salary_usd'] = salaries['Salary_usd'].fillna(salaries['Experience'].ma
 # when missing values are checked again there will be no missing values
 
 # EXERCISE 1
+# Count the number of missing values in each column
+print(planes.isna().sum())
+# Find the five percent threshold
+threshold = len(planes) * 0.05
+# Create a filter
+cols_to_drop = planes.columns[planes.isna().sum() <= threshold]
+# Drop missing values for columns below the threshold
+planes.dropna(subset=cols_to_drop, inplace=True)
+print(planes.isna().sum())
+# Check the values of the Additional_Info column
+print(planes["Additional_Info"].value_counts())
+# Create a box plot of Price by Airline
+sns.boxplot(data=planes, x='Airline', y='Price')
+plt.show()
+# remove add_info colum and impute median by airline for missing price values
+# Calculate median plane ticket prices by Airline
+airline_prices = planes.groupby("Airline")["Price"].median()
+print(airline_prices)
+# Convert to a dictionary
+prices_dict = airline_prices.to_dict()
+# Map the dictionary to missing values of Price by Airline
+planes["Price"] = planes["Price"].fillna(planes["Airline"].map(prices_dict))
+# Check for missing values
+print(planes.isna().sum())
+
+#CONVERTING AND ANALYZING CAT DATA
+# PREVIEWING THE DATA
+print(salaries.select_dtypes('object').head())
+# JOB TITLES
+print(salaries['Designation'].value_counts())
+# COUNT UNIQUE JOB TITLES
+print(salaries['Designtation'].nunique())
+# EXTRACTING VALUE FROM CAT
+pandas.Series.str.contains()
+# SEARCH COLUMN FOR SPECIFIC STR OR MULTIPLE STR
+salaries['Designation'].str.contains('Scientist')
+# FIND MULTIPLE PHRASES IN STRS
+salaries['Designation'].str.contains('Machine Learning|AI')
+# FIND MULTIPLE PHRASES IN STRS THAT START WITH A WORD
+salaries['Designation'].str.contains('^Data')
+
+conditions=[(salaries['Designation'].str.contains('Scientist')),
+            (salaries['Designation'].str.contains('Scientist'))]
+#CREATE CAT COLUMN
+salaries['Job_Category']= np.select(conditions,job_categories,default='Other')
+# VISUALIZE JOB CAT FREQUENCY
+sns.countplot(data=salaries, x='Job_Category')
+plt.show()
+
+#EXERCISE 
+# Finding the number of unique values
+# Filter the DataFrame for object columns
+non_numeric = planes.select_dtypes("object")
+# Loop through columns
+for plane in non_numeric.columns:  
+  # Print the number of unique values
+  print(f"Number of unique values in {plane} column: ", non_numeric[plane].nunique())
+# Create a list of categories
+flight_categories = ["Short-haul", "Medium", "Long-haul"]
+# Create short_flights
+short_flights = "^0h|^1h|^2h|^3h|^4h"
+# Create medium_flights
+medium_flights = "^5h|^6h|^7h|^8h|^9h"
+# Create long_flights
+long_flights = "10h|11h|12h|13h|14h|15h|16h"
+# Create conditions for values in flight_categories to be created
+conditions = [
+    (planes["Duration"].str.contains(short_flights)),
+    (planes["Duration"].str.contains(medium_flights)),
+    (planes["Duration"].str.contains(long_flights))
+]
+# Apply the conditions list to the flight_categories
+planes["Duration_Category"] = np.select(conditions, 
+                                        flight_categories,
+                                        default="Extreme duration")
+# Plot the counts of each category
+sns.countplot(data=planes, x="Duration_Category")
+plt.show()
+
+# WORKING WITH NUMERIC DATA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
