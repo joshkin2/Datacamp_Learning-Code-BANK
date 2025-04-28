@@ -181,8 +181,17 @@ sns.countplot(data=planes, x="Duration_Category")
 plt.show()
 
 # WORKING WITH NUMERIC DATA
-
-
+#CONVERT STRINGS TO NUMBERS
+# 1ST REMOVE COMMA VALUES
+salaries['Salary_in_rupees']= salaries['Salary_in_rupees'].str.replace(',','')
+# 2ND CHANGE COLUMN TO FLOAT
+salaries['Salary_in_rupees']= salaries['Salary_in_rupees'].astype(float)
+# 3RD CREATE NEW COLUMN BY CONVERTING CURRENCY
+salaries['Salary_in_usd']=salaries['Salary_in_rupees'] * 0.012
+# ADD SUMMARY STATS INTO DF
+salaries['std_dev']= salaries.groupby('Experience')['Salary_usd'].transform(lambda x:x.std())
+print(salaries[['Experience','std_dev']].value_counts())
+salaries['median_by_comp_size']= salaries.groupby('Company_size')\['Salary_usd'].transform(lambda x:x.median())
 
 
 
