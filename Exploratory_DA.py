@@ -215,8 +215,44 @@ planes["price_destination_mean"] = planes.groupby("Destination")["Price"].transf
 print(planes[["Destination","price_destination_mean"]].value_counts())
 
 # HANDLING OUTLIERS
+# IDENTIFY OUTLIER BY COMPARING MAX TO MEAN VALUE
+print(salaries['Salary_usd'].describe())
+# FIND OUTLIERS USING IQR
+sns.boxplot(data=salaries,y='salary_usd')
+plt.show()   # we can get the 75th&25th percentile from graph
+# UPPER OUTLIERS= VALIES ABOVE 75TH + (1.5*IQR)
+# LOWER= VALUES BELOW 25TH - (1.5*iqr)
+# CALCULATING PERCENTILES and identifying outliers with quantile()
+seventy_fifth= salaries['salary_usd'].quantile(0.75)
+twenty_fifth= salaries['salary_usd'].quantile(0.25)
+salaries_iqr= seventy_fifth - twenty_fifth
+upper= seventy_fifth+(1.5 * salaries_iqr)
+lower=twenty_fifth-(1.5*salaries_iqr)
+print(upper,lower)
+# SUBSETTING DATA
+salaries[(salaries['salary_usd']<lower) | (salaries['salary_usd']>
+                                           upper)]\[['Experience',
+                                                     'employee_location','salary_usd']]
+# WE LOOK FOR OUTLIERS BECAUSE STATS TESTS AND ML MODELS NEED NORMALLY DISTRIBUTED DATA
+# DROPPING OUTLIERS
+no_outliers= salaries[(salaries['salary_usd']>lower) & (salaries['salary_usd']<
+                                           upper)]
+print(no_outliers['salary_usd'].describe())
 
+#EXECISE
+# Find the 75th and 25th percentiles
+price_seventy_fifth = planes["Price"].quantile(0.75)
+price_twenty_fifth = planes["Price"].quantile(0.25)
+# Calculate iqr
+prices_iqr = price_seventy_fifth - price_twenty_fifth
+# Calculate the thresholds
+upper = price_seventy_fifth + (1.5 * prices_iqr)
+lower = price_twenty_fifth - (1.5 * prices_iqr)
+# Subset the data
+planes = planes[(planes["Price"] > lower) & (planes["Price"] < upper)]
+print(planes["Price"].describe())
 
+# PATTERNS OVERTIME
 
 
 
