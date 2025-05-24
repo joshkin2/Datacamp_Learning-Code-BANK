@@ -30,10 +30,11 @@ print(df)
 
 #SAMPLE OF WEBSCRAPING
 #to perform webscraping we need to install these libraries with the codes
-!mamba install bs4==4.10.0 -y
-!pip install lxml==4.6.4
-!mamba install html5lib==1.1 -y
-!pip install requests==2.26.0
+# !mamba install bs4==4.10.0 -y
+# !pip install lxml==4.6.4
+# !mamba install html5lib==1.1 -y
+# !pip install requests==2.26.0
+# The above lines are for interactive environments (like Jupyter); use them in a terminal instead.
 import requests
 from bs4 import BeautifulSoup
 page = requests.get('http://EnterWebsiteURL'...).text
@@ -200,8 +201,7 @@ for node in root:
     name = node.find('name').text
     phonenumber = node.find('phonenumber').text
     birthday = nod.find('birthday').text
-    df = df.append(pd.Series([name, phonenumber, birthday],
-    index = columns)....., ignore_index = True
+    df = df.append(pd.Series([name, phonenumber, birthday], index=columns), ignore_index=True)
 
 
 
