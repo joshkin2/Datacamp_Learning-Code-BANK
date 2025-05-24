@@ -253,8 +253,18 @@ planes = planes[(planes["Price"] > lower) & (planes["Price"] < upper)]
 print(planes["Price"].describe())
 
 # PATTERNS OVERTIME
-
-
+divorce = pd.read_csv("divorce.csv")
+# IMPORTING DATETIME DATA
+divorce=pd.read_csv("divorce.csv", parse_date=["marriage_date"])
+# CONVERTING TO DATETIME DATA
+divorce["marriage_data"]= pd.to_datetime(divorce["marriage_date"])
+# CONVERT 3 DATE COLUMNS (MNTH. DAY, YEAR) TO 1 COLUMN
+divorce["marriage_date"]= pd.to_datetime(divorce[["month","day","year"]])
+# EXTRACT PARTS OF A FULL DATE
+divorce["marriage_month"]= divorce["marriage_date"].dt.month
+# VISUALIZING PATTERNS OVER TIME
+sns.lineplot(data=divorce, x="mariage_month",y="marriage_duration")
+plt.show()
 
 
 
