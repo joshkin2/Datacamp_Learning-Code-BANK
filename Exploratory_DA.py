@@ -262,14 +262,37 @@ divorce["marriage_data"]= pd.to_datetime(divorce["marriage_date"])
 divorce["marriage_date"]= pd.to_datetime(divorce[["month","day","year"]])
 # EXTRACT PARTS OF A FULL DATE
 divorce["marriage_month"]= divorce["marriage_date"].dt.month
+# Define the marriage_year column
+divorce["marriage_year"] = divorce["marriage_date"].dt.year
+
 # VISUALIZING PATTERNS OVER TIME
 sns.lineplot(data=divorce, x="mariage_month",y="marriage_duration")
 plt.show()
 
+# EXERCISE 1
+# Import divorce.csv, parsing the appropriate columns as dates in the import
+divorce = pd.read_csv("divorce.csv",parse_dates=["divorce_date","dob_man","dob_woman","marriage_date"])
+print(divorce.dtypes)
+# Define the marriage_year column
+divorce["marriage_year"] = divorce["marriage_date"].dt.year
+# Create a line plot showing the average number of kids by year
+sns.lineplot(data=divorce,x="marriage_year",y="num_kids")
+plt.show()
 
-
-
-
+#CORRELATION
+divorce.corr() #pearson corr coefficient - linear only
+# CORRELATION HEATMAP
+sns.heatmap(divorce.corr(), annot=True)
+plt.show()
+# SCATTER PLOTS
+sns.scatterplot(data=divorce,x="income_man",y= "income_woman")
+plt.show()
+# PAIRPLOTS
+sns.paiplot(data=divorce)
+plt.show()
+# MINIMIZE PLOTS SHOWN
+sns.pairplot(data=divorce,vars=["income_man","income_woman"])
+plt.show()
 
 
 
