@@ -3,7 +3,7 @@ brics.index = ["infos to add"]
 #extracting infos as pandas DF in whole columns in a DF
 brics[['column1', 'column2']]
 #use slicing to extract rows in DF
-brics[1:4] to extract info from the 2nd row to the 4th(n-1)
+brics[1:4] #to extract info from the 2nd row to the 4th(n-1)
 #pinpoint and extract all data in a row as panda series and panda DF on a DF using loc
 brics.loc['RU'] or brics.loc[['RU']]
 #for multiple rows
@@ -35,7 +35,7 @@ brics[brics['area'] > 8]
 
 # to compare values in a DF
 import numpy as np
-np.logical_and(brics['area'] > 8, brics['area'] < 10 #to get the bool values
+np.logical_and(brics['area'] > 8, brics['area'] < 10) #to get the bool values
 # or
 brics[np.logical_and(brics['area'] > 8, brics['area'] < 10)]
 
@@ -88,7 +88,7 @@ sales['unit_price'].agg([np.mean, np.median])
 df = df.transform(func = lambda x : x + 10)
 print(df)
 #find sqt of each element in the DF
-result = df.transform(func = ['sqrt]')
+result = df.transform(func = ['sqrt'])
 
 #sort 1 column(smallest to largest)
 df.sort_values('column_name', ascending= False)
@@ -314,9 +314,9 @@ dict_o_l= {
 new_dogs = pd.DataFrame(dict_o_l)
 
 # CSV to DataFrame
-new_dogs = pd.read_csv('new_dogs.csv")
+new_dogs = pd.read_csv("new_dogs.csv")
 # DataFrame to CSV
-new_dogs.to_csv('new_dogs_with_bmi.csv')
+new_dogs.to_csv("new_dogs_with_bmi.csv")
 
 # merging = joining, tables = Dataframes (default= inner)
 # Merging tables( join ward df on census df) this is inner join
@@ -329,7 +329,7 @@ counted_df = licenses_owners.groupby('title').agg({'account':'count'})
 sorted_df = counted_df.sort_values(by= 'account', ascending= False)
 
 #formula for merging 3 or more tables
-df1.merge(df2, on= 'col')\.merge(df3, on= 'col')
+df1.merge(df2, on= 'col').merge(df3, on= 'col')
 # Group by ward, pop_2010, and vacant, then count the number of accounts
 pop_vac_lic = land_cen_lic.groupby(['ward', 'pop_2010', 'vacant'], as_index=False).agg({'account': 'count'})
 
@@ -373,7 +373,7 @@ cnt_by_gid = top_tracks.groupby(['gid'], as_index=False).agg({'tid':'count'})
 # 4 Merge the genres table to cnt_by_gid on gid and print
 print(cnt_by_gid.merge(genres, on='gid'))
 # VALIDATING MERGES
-.merge(validate='one_to_one' or 'one_to_many' or 'many_to_one' or 'many_to_many')
+merge(validate='one_to_one' or 'one_to_many' or 'many_to_one' or 'many_to_many')
 
 # CONCATENATE DF TOGETHER VERTICALLY
 # BASIC CONCATENATION
@@ -389,7 +389,7 @@ pd.concat([inv_jan, inv_feb], join= 'inner')
 # Group the invoices by the index keys and find avg of the total column
 avg_inv_by_month = inv_jul_thr_sep.groupby(level=0).agg({'total':'mean'})
 # VERIFYING CONCATENATIONS (False is default value)
-.concat(verify_integrity= False)
+concat(verify_integrity= False)
 
 # USING MERGE_ORDERED() (default= outer) -- FOR ORDERED DATA/TIME SERIES, FILLING MISSING VALUES
 pd.merge_ordered(aapl, mcd, on= 'date', suffixes=('_aapl', '_mcd'))
@@ -406,7 +406,7 @@ gdp_returns = gdp_sp500[['gdp', 'returns']]
 # USE MERGE_ASOF() WHEN- DATA SAMPLED FROM A PROCESS, DEVELOPING A TRAINING SET(NO DATA LEAKAGE)
 pd.merge_asof(visa, ibm, on='date_time', suffixes=('_visa', '_ibm'))
 # use direction argument 'forward' to select 1st row on right table whose 'on' key column is greater than or equal to left keys column, use 'nearest' where rows with nearest timees are matched
-pd.merge_asof(visa, ibm, on=['date_time'], suffixes=('_visa', '_ibm"), direction='forward')      
+pd.merge_asof(visa, ibm, on=['date_time'], suffixes=('_visa', '_ibm'), direction='forward')
 
 # Using merge_asof() to create dataset STEPS
 # 1 Merge gdp and recession on date using merge_asof()
@@ -436,7 +436,7 @@ stocks_long.query('stock=="disney" or (stock==="nike" and close < 90)')
 # calculate column range using range fucntion
 def range(column):
     return column.max() - column.min()
-print(sales['unit_price'].agg(range)
+print(sales['unit_price'].agg(range))
 
 # Compute price diff 1
 price_diffs = jpm_wells_bac.diff()
@@ -448,5 +448,3 @@ plt.show()
 #most efficient way to do what is above
 brics["name_length"] = brics["country"].apply(len)
 print(brics)
-
-               
