@@ -230,9 +230,7 @@ upper= seventy_fifth+(1.5 * salaries_iqr)
 lower=twenty_fifth-(1.5*salaries_iqr)
 print(upper,lower)
 # SUBSETTING DATA
-salaries[(salaries['salary_usd']<lower) | (salaries['salary_usd']>
-                                           upper)]\[['Experience',
-                                                     'employee_location','salary_usd']]
+salaries[(salaries['salary_usd'] < lower) | (salaries['salary_usd'] > upper)][['Experience', 'employee_location', 'salary_usd']]
 # WE LOOK FOR OUTLIERS BECAUSE STATS TESTS AND ML MODELS NEED NORMALLY DISTRIBUTED DATA
 # DROPPING OUTLIERS
 no_outliers= salaries[(salaries['salary_usd']>lower) & (salaries['salary_usd']<
