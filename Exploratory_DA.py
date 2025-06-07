@@ -292,13 +292,22 @@ plt.show()
 sns.pairplot(data=divorce,vars=["income_man","income_woman"])
 plt.show()
 
+#FACTOR RELATIONSHIPS & DISTRIBUTIONS
+#explore categorical relationships
+sns.histplot(data=divorce,x="marriage_duration",hue="education_man", binwidth=1)
+plt.show()
+# FOR CLEARER VISUALIZATION OF ABOVE KDE PLOTS
+sns.kdeplot(data=divorce,x="marriage_duration",hue="education_man", cut=0)
+plt.show()
+CUMULATIVE KDE PLOTS
+sns.kdeplot(data=divorce,x="marriage_duration",hue="education_man",cut=0,cumulative=True)
+plt.show()
 
-
-
-
-
-
-
+#CHECKING RELATIONSHIP BTW MARRIAGE AGE AND EDUCATIOM
+divorce["man_age_marriage"]= divorce["marriage_year"] - divorce["dob_man"].dt.year
+divorce["woman_age_marriage"]= divorce["marriage_year"] - divorce["dob_woman"].dt.year
+sns.scatterplot(data=divorce, x="woman_age_marriage",y="man_age_marriage",hue="education_man")
+plt.show()
 
 
 
