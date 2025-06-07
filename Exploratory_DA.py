@@ -309,12 +309,42 @@ divorce["woman_age_marriage"]= divorce["marriage_year"] - divorce["dob_woman"].d
 sns.scatterplot(data=divorce, x="woman_age_marriage",y="man_age_marriage",hue="education_man")
 plt.show()
 
+# CONSIDERATIONS 4 CAT DATA
+# RELATIVE CLASS FREQUENCY
+planes["Destination"].value_counts(normalize=True)
+#CROSS-TABULATION
+pd.crosstab(planes["Source"], planes["Destination"])
+# AGG values with pd.crosstab()
+pd.crosstab(planes["Source"],planes["Destination"],
+            values=planes["Price"], aggfunc="median")
 
-
-
-
-
-
+#GENERATING NEW FEATURES
+#CLEANING TOTAL STOPS
+planes["Total_stops"]= planes["Total_stops"].str.replace(" stops", "")
+planes["Total_stops"]= planes["Total_stops"].str.replace(" stop", "")
+planes["Total_stops"]= planes["Total_stops"].str.replace("non_stop", "0")
+planes["Total_stops"]= planes["Total_stops"].astype(int)
+#correlation
+sns.heatmap(planes.corr(), annot=True)
+plt.show()
+# EXTRACTING MONTH AND WEEKDAY
+planes["month"]= planes["Date_of_journey"].dt.month
+planes["weekday"]= planes["Date_of_journey"].dt.weekday
+print(planes[["month","weekday","Date_of_journey"]].head())
+# CREATING CATEGORIES using descriptive stats
+twenty_fifth= planes["Price"].quantile(0.25)
+median=planes["Price"].median()
+seventy_fifth= planes["Price"].quantile(0.75)
+maximum= planes["Price"].max()
+# Labels and bins
+labels=["Economy","Premium Eco", "Business Cl", "First Cl"]
+bins=[0, twenty_fifth, median, seventy_fifth, maximum]
+planes["Price_category"]= pd.cut(planes["Price"],
+                                 labels=labels,bins=bins)
+print(planes[["Price","Price_category"]].head())
+#PRICE CAT BY AIRLINE
+sns.countplot(data=planes,x="Airline",hue="Price_category")
+plt.show()
 
 
 
