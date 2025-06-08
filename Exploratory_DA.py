@@ -346,7 +346,33 @@ print(planes[["Price","Price_category"]].head())
 sns.countplot(data=planes,x="Airline",hue="Price_category")
 plt.show()
 
+#EXERCISE 1
+# Create salary labels
+salary_labels = ["entry", "mid", "senior", "exec"]
+# Create the salary ranges list
+salary_ranges = [0, twenty_fifth, salaries_median, seventy_fifth, salaries["Salary_USD"].max()]
+# Create salary_level
+salaries["salary_level"] = pd.cut(salaries["Salary_USD"],
+                                  bins=salary_ranges,
+                                  labels=salary_labels)
+# Plot the count of salary levels at companies of different sizes
+sns.countplot(data=salaries, x="Company_Size", hue="salary_level")
+plt.show()
 
+# GENERATING HYPOTHESIS
+# SPURIOUS CORRELATION
+sns.scatterplot(data=planes, x="duration",y="price",hue="total_stops")
+plt.show()
+sns.barplot(data=planes, x="airline", y="duration")
+plt.show()
 
-
+#Exercise 1
+# Filter for employees in the US or GB
+usa_and_gb = salaries[salaries["Employee_Location"].isin(["US", "GB"])]
+# Create a barplot of salaries by location
+sns.barplot(data=usa_and_gb, x="Employee_Location", y="Salary_USD")
+plt.show()
+# Create a bar plot of salary versus company size, factoring in employment status
+sns.barplot(data=salaries, x="Company_Size", y="Salary_USD", hue="Employment_Status")
+plt.show()
 
